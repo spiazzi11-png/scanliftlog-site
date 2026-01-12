@@ -20,7 +20,6 @@
       --radius:18px;
       --radius2:26px;
     }
-    
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -91,22 +90,16 @@
       border-color: rgba(139,92,246,.55);
       background: linear-gradient(135deg, rgba(139,92,246,.95), rgba(139,92,246,.55));
     }
-    .btn.primary:hover{
-      filter: brightness(1.05);
-    }
+    .btn.primary:hover{filter: brightness(1.05);}
 
-    .hero{
-      padding:54px 0 18px;
-    }
+    .hero{padding:54px 0 18px;}
     .hero-grid{
       display:grid;
       grid-template-columns: 1.15fr .85fr;
       gap:22px;
       align-items:stretch;
     }
-    @media (max-width: 980px){
-      .hero-grid{grid-template-columns:1fr}
-    }
+    @media (max-width: 980px){ .hero-grid{grid-template-columns:1fr} }
     .hero-card{
       border:1px solid var(--line);
       background: rgba(18,19,24,.72);
@@ -115,9 +108,7 @@
       overflow:hidden;
       position:relative;
     }
-    .hero-card .inner{
-      padding:28px;
-    }
+    .hero-card .inner{padding:28px;}
     .kicker{
       display:inline-flex; align-items:center; gap:10px;
       color:var(--muted);
@@ -162,11 +153,7 @@
       overflow:hidden;
       box-shadow: 0 14px 40px rgba(0,0,0,.30);
     }
-    .shot img{
-      width:100%;
-      display:block;
-      height:auto;
-    }
+    .shot img{width:100%;display:block;height:auto;}
     .caption{
       padding:10px 12px;
       border-top:1px solid rgba(255,255,255,.10);
@@ -185,20 +172,14 @@
       font-size:26px;
       letter-spacing:-.3px;
     }
-    .section-title p{
-      margin:0;
-      color:var(--muted);
-      max-width: 65ch;
-    }
+    .section-title p{margin:0;color:var(--muted);max-width: 65ch;}
 
     .grid-3{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
       gap:14px;
     }
-    @media (max-width: 980px){
-      .grid-3{grid-template-columns:1fr}
-    }
+    @media (max-width: 980px){ .grid-3{grid-template-columns:1fr} }
     .card{
       border:1px solid var(--line);
       background: rgba(18,19,24,.66);
@@ -279,11 +260,7 @@
       margin-left:6px;
       font-weight:700;
     }
-    ul{
-      margin:10px 0 0;
-      padding-left:18px;
-      color:var(--muted);
-    }
+    ul{margin:10px 0 0;padding-left:18px;color:var(--muted)}
     li{margin:6px 0}
 
     .faq{
@@ -293,16 +270,11 @@
       box-shadow: var(--shadow);
       padding:18px;
     }
-    details{
-      border-top:1px solid rgba(255,255,255,.10);
-      padding:12px 0;
-    }
+    details{border-top:1px solid rgba(255,255,255,.10);padding:12px 0;}
     details:first-child{border-top:0;padding-top:0}
-    summary{
-      cursor:pointer;
-      font-weight:800;
-    }
+    summary{cursor:pointer;font-weight:800;}
     details p{margin:8px 0 0;color:var(--muted)}
+
     footer{
       padding:30px 0 36px;
       color:var(--muted);
@@ -319,6 +291,21 @@
       padding:8px 12px; border-radius:999px;
       border:1px solid var(--line);
       background: rgba(255,255,255,.03);
+    }
+    .footer-links{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .footer-links a{
+      text-decoration:none;
+      border-bottom:1px solid transparent;
+      padding:4px 0;
+    }
+    .footer-links a:hover{
+      color:var(--text);
+      border-bottom-color:rgba(255,255,255,.35);
     }
   </style>
 </head>
@@ -369,7 +356,7 @@
           </div>
         </div>
 
-        <!-- HERO VISUAL: pick the most "wow" screenshot here -->
+        <!-- HERO VISUAL -->
         <div class="hero-card hero-media">
           <div class="shot">
             <img
@@ -428,7 +415,7 @@
           <div class="num">4</div>
           <div>
             <h3>Download + Upload to move phones</h3>
-            <p>Members can export their history to a file and re-upload it on a new device.</p>
+            <p>Members can export their history to a file and re-upload it on a new device to restore it.</p>
           </div>
         </div>
       </div>
@@ -454,7 +441,7 @@
         </div>
         <div class="card">
           <h3>Private by default</h3>
-          <p>No personal info required. Member history stays on-device for MVP use cases.</p>
+          <p>No personal info required. Member history stays on-device by default.</p>
         </div>
         <div class="card">
           <h3>Download + Upload</h3>
@@ -462,11 +449,11 @@
         </div>
         <div class="card">
           <h3>Simple gym rollout</h3>
-          <p>Print and apply labels. Done. No app onboarding sessions, no member accounts to manage.</p>
+          <p>Print and apply labels. Done. No onboarding sessions, no member accounts to manage.</p>
         </div>
         <div class="card">
           <h3>Admin analytics ready</h3>
-          <p>Optional: track scans, saves, most-used machines, dead zones, and engagement by time/day.</p>
+          <p>Optional: track scans, saves, most-used machines, engagement by day/hour, and “dead machines.”</p>
         </div>
       </div>
     </div>
@@ -477,9 +464,7 @@
     <div class="container">
       <div class="section-title">
         <h2>Product screenshots</h2>
-        <p>
-          These are real UI screens from the live experience: strength logging, cardio logging, and history review.
-        </p>
+        <p>Real UI screens from the live experience: strength logging, cardio logging, and history review.</p>
       </div>
 
       <div class="shots-grid">
@@ -510,15 +495,13 @@
           <div class="caption">History view: quickly see recent sessions and expand details per workout.</div>
         </div>
 
-        <!-- If you want a fourth screenshot later, add it here. For now we show the QR sample in next section. -->
         <div class="card">
-          <h3 style="margin-top:0">Tip for your screenshots</h3>
+          <h3 style="margin-top:0">Data portability built-in</h3>
           <p>
-            For the cleanest look on the marketing page, keep screenshots consistent:
-            same phone zoom level, same top spacing, and avoid cropping off headers.
+            Users can export their data to a file and re-import it on a new device. This protects workout history if a phone is replaced.
           </p>
           <p style="margin-top:10px;color:var(--muted)">
-            If you upload a better “hero” screenshot later, we can swap it into the top-right hero panel.
+            Note: data is stored locally on the user’s device by default, so clearing browser storage can remove history.
           </p>
         </div>
       </div>
@@ -530,9 +513,7 @@
     <div class="container">
       <div class="section-title">
         <h2>QR label examples</h2>
-        <p>
-          Sample labels you can print and apply to machines. Clear gym + machine naming, with “Powered by ScanLiftLog”.
-        </p>
+        <p>Sample labels you can print and apply to machines. Clear naming with “Powered by ScanLiftLog”.</p>
       </div>
 
       <div class="shots-grid">
@@ -552,7 +533,7 @@
             For tight areas, 1.5&quot; x 1.5&quot; can still scan reliably if printed cleanly.
           </p>
           <p style="margin-top:10px;color:var(--muted)">
-            For production, use a durable label stock (water-resistant) and consider a clear overlay if machines get heavy cleaning.
+            For production, use a durable label stock and consider a clear overlay if machines get frequent cleaning.
           </p>
         </div>
       </div>
@@ -564,9 +545,7 @@
     <div class="container">
       <div class="section-title">
         <h2>Simple rollout options</h2>
-        <p>
-          Keep it easy at launch. Start with a pilot, then expand gym-wide once members adopt it.
-        </p>
+        <p>Start with a pilot, then expand gym-wide once members adopt it.</p>
       </div>
 
       <div class="pricing">
@@ -625,7 +604,7 @@
 
         <details>
           <summary>Do members need to create an account?</summary>
-          <p>No personal information is required. History stays on-device by default, and members can export/import data.</p>
+          <p>No personal information is required. History stays on-device by default, and users can export/import data.</p>
         </details>
 
         <details>
@@ -634,8 +613,8 @@
         </details>
 
         <details>
-          <summary>Will this break if people switch phones?</summary>
-          <p>No — members can Download their data and Upload it on a new device to restore their history.</p>
+          <summary>Is ScanLiftLog responsible for fake QR codes?</summary>
+          <p>No. QR codes may be placed or altered by third parties. Users should only scan labels they trust.</p>
         </details>
       </div>
     </div>
@@ -649,18 +628,17 @@
           <div class="section-title" style="margin-bottom:10px">
             <h2 style="margin:0">Request a demo</h2>
             <p style="margin:0;color:var(--muted)">
-              Want to pilot this in your gym? I’ll help you set up your gym ID and generate your first set of QR labels.
+              Want to pilot this in your gym? I’ll help set up your gym ID and generate your first set of QR labels.
             </p>
           </div>
 
           <div class="cta-row">
-            <!-- Replace the email with your preferred address or a form link when ready -->
             <a class="btn primary" href="mailto:hello@scanliftlog.com?subject=ScanLiftLog%20Demo%20Request&body=Gym%20name%3A%0ALocation%3A%0AApprox.%20machine%20count%3A%0A">Email to schedule</a>
             <a class="btn" href="https://scanliftlog.com/g/TEST/TRED" target="_blank" rel="noopener">Open demo link</a>
           </div>
 
           <div class="mini">
-            If you don’t have email set up yet, keep the button and swap it later to a contact form.
+            Replace the email address anytime. You can also link this button to a form later.
           </div>
         </div>
       </div>
@@ -674,7 +652,12 @@
           <div class="logo" style="width:22px;height:22px;border-radius:9px"></div>
           <div class="small"><strong>ScanLiftLog</strong> — Powered by QR-first workout logging</div>
         </div>
-        <div class="small">© <span id="y"></span> ScanLiftLog. All rights reserved.</div>
+
+        <div class="footer-links small">
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Service</a>
+          <span>© <span id="y"></span> ScanLiftLog</span>
+        </div>
       </div>
     </div>
   </footer>
