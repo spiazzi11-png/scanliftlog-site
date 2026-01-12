@@ -3,171 +3,683 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ScanLiftLog – Turn Every Machine Into a Smart Training Station</title>
+  <title>ScanLiftLog — QR-based gym workout logging</title>
+  <meta name="description" content="Scan a machine QR code to instantly log sets, reps, and cardio stats — no app download, no account, no friction." />
+
   <style>
-    :root {
-      --b:#111;
-      --g:#666;
-      --bg:#f6f7fb;
-      --card:#fff;
-      --line:#e6e8f0;
-      --accent:#111;
-      
+    :root{
+      --bg:#0b0c10;
+      --panel:#121318;
+      --panel2:#0f1015;
+      --text:#e9e9ee;
+      --muted:#a9a9b6;
+      --line:rgba(255,255,255,.10);
+      --accent:#8b5cf6;
+      --accent2:#22c55e;
+      --shadow:0 10px 40px rgba(0,0,0,.35);
+      --radius:18px;
+      --radius2:26px;
     }
-    * { box-sizing:border-box; }
-    body {
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:var(--bg);
-      color:var(--b);
-      line-height:1.5;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1000px 600px at 20% 0%, rgba(139,92,246,.22), transparent 60%),
+        radial-gradient(900px 600px at 90% 10%, rgba(34,197,94,.14), transparent 55%),
+        linear-gradient(180deg, #07080c 0%, #0b0c10 70%, #07080c 100%);
+      color:var(--text);
+      line-height:1.45;
     }
-    .wrap { max-width:1100px; margin:0 auto; padding:48px 20px; }
-    .hero { padding:64px 0; text-align:center; }
-    h1 { font-size:40px; line-height:1.1; margin:0 0 16px; }
-    h2 { font-size:28px; margin:0 0 12px; }
-    p { color:var(--g); margin:0 0 16px; }
-    .btnrow { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:24px; }
-    .btn {
-      padding:12px 18px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background:#fff;
-      color:var(--b);
+    a{color:inherit}
+    .container{max-width:1100px;margin:0 auto;padding:0 18px}
+    .nav{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(10px);
+      background: rgba(11,12,16,.72);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      font-weight:800; letter-spacing:.2px;
+    }
+    .logo{
+      width:36px;height:36px;border-radius:12px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.20), transparent 55%),
+        linear-gradient(135deg, rgba(139,92,246,.95), rgba(34,197,94,.85));
+      box-shadow: var(--shadow);
+    }
+    .nav-links{
+      display:flex; align-items:center; gap:14px;
+      color:var(--muted);
+      font-weight:600;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .nav-links a{
       text-decoration:none;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid transparent;
+    }
+    .nav-links a:hover{
+      border-color:var(--line);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      text-decoration:none;
+      font-weight:800;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      box-shadow: 0 8px 26px rgba(0,0,0,.25);
+    }
+    .btn:hover{background: rgba(255,255,255,.09)}
+    .btn.primary{
+      border-color: rgba(139,92,246,.55);
+      background: linear-gradient(135deg, rgba(139,92,246,.95), rgba(139,92,246,.55));
+    }
+    .btn.primary:hover{
+      filter: brightness(1.05);
+    }
+
+    .hero{
+      padding:54px 0 18px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr}
+    }
+    .hero-card{
+      border:1px solid var(--line);
+      background: rgba(18,19,24,.72);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero-card .inner{
+      padding:28px;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      color:var(--muted);
+      font-weight:700;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      padding:8px 12px;
+      border-radius: 999px;
+    }
+    h1{
+      margin:14px 0 10px;
+      font-size: 44px;
+      line-height:1.07;
+      letter-spacing:-.7px;
+    }
+    @media (max-width: 520px){ h1{font-size:36px} }
+    .sub{
+      margin:0 0 18px;
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 60ch;
+    }
+    .cta-row{
+      display:flex; gap:12px; flex-wrap:wrap; align-items:center;
+      margin-top:18px;
+    }
+    .mini{
+      color:var(--muted);
+      font-size:13px;
+      margin-top:12px;
+    }
+
+    .hero-media{
+      display:flex; flex-direction:column; gap:12px;
+      padding:18px;
+      background: rgba(15,16,21,.72);
+    }
+    .shot{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      background: rgba(255,255,255,.03);
+      overflow:hidden;
+      box-shadow: 0 14px 40px rgba(0,0,0,.30);
+    }
+    .shot img{
+      width:100%;
+      display:block;
+      height:auto;
+    }
+    .caption{
+      padding:10px 12px;
+      border-top:1px solid rgba(255,255,255,.10);
+      color: var(--muted);
+      font-size:13px;
+    }
+
+    section{padding:30px 0}
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size:26px;
+      letter-spacing:-.3px;
+    }
+    .section-title p{
+      margin:0;
+      color:var(--muted);
+      max-width: 65ch;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    @media (max-width: 980px){
+      .grid-3{grid-template-columns:1fr}
+    }
+    .card{
+      border:1px solid var(--line);
+      background: rgba(18,19,24,.66);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:18px;
+    }
+    .card h3{margin:0 0 8px; font-size:18px}
+    .card p{margin:0; color:var(--muted)}
+
+    .steps{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    @media (max-width: 980px){ .steps{grid-template-columns:1fr} }
+    .step{
+      border:1px solid var(--line);
+      background: rgba(18,19,24,.66);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:18px;
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+    }
+    .num{
+      width:34px;height:34px;border-radius:12px;
+      display:flex;align-items:center;justify-content:center;
+      font-weight:900;
+      background: rgba(139,92,246,.20);
+      border:1px solid rgba(139,92,246,.35);
+      flex:0 0 auto;
+    }
+    .step h3{margin:0 0 6px;font-size:18px}
+    .step p{margin:0;color:var(--muted)}
+
+    .shots-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    @media (max-width: 980px){ .shots-grid{grid-template-columns:1fr} }
+
+    .pricing{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap:14px;
+    }
+    @media (max-width: 980px){ .pricing{grid-template-columns:1fr} }
+    .price{
+      border:1px solid var(--line);
+      background: rgba(18,19,24,.66);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:18px;
+    }
+    .badge{
+      display:inline-flex;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color:var(--muted);
+      font-weight:800;
+      font-size:12px;
+    }
+    .price h3{margin:10px 0 4px}
+    .amount{
+      font-size:34px;
+      font-weight:900;
+      letter-spacing:-.8px;
+      margin:8px 0 8px;
+    }
+    .per{
+      color:var(--muted);
+      font-size:13px;
+      margin-left:6px;
       font-weight:700;
     }
-    .btn.primary { background:var(--accent); color:#fff; border-color:var(--accent); }
-    .section { padding:56px 0; }
-    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; }
-    .card {
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:20px;
-      box-shadow:0 6px 18px rgba(0,0,0,.05);
+    ul{
+      margin:10px 0 0;
+      padding-left:18px;
+      color:var(--muted);
     }
-    .icon { font-size:28px; margin-bottom:8px; }
-    footer {
-      text-align:center;
-      color:var(--g);
-      font-size:12px;
-      padding:32px 0;
+    li{margin:6px 0}
+
+    .faq{
+      border:1px solid var(--line);
+      background: rgba(18,19,24,.66);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:18px;
+    }
+    details{
+      border-top:1px solid rgba(255,255,255,.10);
+      padding:12px 0;
+    }
+    details:first-child{border-top:0;padding-top:0}
+    summary{
+      cursor:pointer;
+      font-weight:800;
+    }
+    details p{margin:8px 0 0;color:var(--muted)}
+    footer{
+      padding:30px 0 36px;
+      color:var(--muted);
       border-top:1px solid var(--line);
+      margin-top:14px;
+    }
+    .footer-row{
+      display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
+      gap:12px;
+    }
+    .small{font-size:13px}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px; border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
     }
   </style>
 </head>
+
 <body>
+  <div class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>ScanLiftLog</div>
+        </div>
+        <div class="nav-links">
+          <a href="#how-it-works">How it works</a>
+          <a href="#features">Features</a>
+          <a href="#screenshots">Screenshots</a>
+          <a href="#qr-labels">QR labels</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#contact">Contact</a>
+          <a class="btn" href="https://scanliftlog.com/g/TEST/TRED" target="_blank" rel="noopener">Try demo</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- HERO -->
-  <section class="hero wrap">
-    <h1>Turn Every Machine Into a Smart Training Station</h1>
-    <p>
-      ScanLiftLog lets gym members scan a QR code on any machine to instantly view and log
-      their workout history — no app, no account, no friction.
-    </p>
-    <div class="btnrow">
-      <a class="btn primary" href="#how">See How It Works</a>
-      <a class="btn" href="#owners">For Gym Owners</a>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-card">
+          <div class="inner">
+            <div class="kicker">No app • No account • QR-first</div>
+            <h1>Machine-specific workout logging in seconds.</h1>
+            <p class="sub">
+              Scan a QR code on any machine to instantly log sets & reps or cardio stats —
+              and view your history right there on your phone.
+            </p>
+
+            <div class="cta-row">
+              <a class="btn primary" href="#contact">Request a gym demo</a>
+              <a class="btn" href="#screenshots">See the UI</a>
+              <a class="btn" href="#qr-labels">See label examples</a>
+            </div>
+
+            <div class="mini">
+              Members keep their data on-device by default. Includes Download + Upload to move history to a new phone.
+            </div>
+          </div>
+        </div>
+
+        <!-- HERO VISUAL: pick the most "wow" screenshot here -->
+        <div class="hero-card hero-media">
+          <div class="shot">
+            <img
+              src="assets/screenshots/assets-ui-strength.png.jpg"
+              alt="ScanLiftLog strength logging UI"
+              loading="lazy"
+            />
+            <div class="caption">Strength logging UI — sets, weight, reps, and notes.</div>
+          </div>
+          <div class="shot">
+            <img
+              src="assets/screenshots/assets-ui-cardio.png.jpg"
+              alt="ScanLiftLog cardio logging UI"
+              loading="lazy"
+            />
+            <div class="caption">Cardio logging UI — minutes required, optional metrics like calories, distance, incline, speed.</div>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
+  </header>
 
   <!-- HOW IT WORKS -->
-  <section id="how" class="section wrap">
-    <h2>How It Works</h2>
-    <div class="grid" style="margin-top:24px;">
-      <div class="card">
-        <div class="icon">📱</div>
-        <h3>Scan</h3>
-        <p>Members scan the QR code on any machine using their phone camera.</p>
+  <section id="how-it-works">
+    <div class="container">
+      <div class="section-title">
+        <h2>How it works</h2>
+        <p>
+          Simple for members. Simple for gyms. You label machines once, and members scan to log forever.
+        </p>
       </div>
-      <div class="card">
-        <div class="icon">✍️</div>
-        <h3>Log</h3>
-        <p>They instantly log sets, reps, or cardio stats — right on their phone.</p>
-      </div>
-      <div class="card">
-        <div class="icon">📊</div>
-        <h3>Track</h3>
-        <p>Each machine keeps its own history, helping members progress with purpose.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <div>
+            <h3>Gym places QR labels on equipment</h3>
+            <p>Each label points to a machine-specific link (gym + machine ID). No app store required.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <div>
+            <h3>Member scans and logs instantly</h3>
+            <p>Strength machines show sets/reps/weight. Cardio machines show time + machine stats.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <div>
+            <h3>History is always tied to the machine</h3>
+            <p>Members can see what they did last time on that exact piece of equipment.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">4</div>
+          <div>
+            <h3>Download + Upload to move phones</h3>
+            <p>Members can export their history to a file and re-upload it on a new device.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- BENEFITS -->
-  <section class="section wrap">
-    <div class="grid">
-      <div class="card">
-        <h3>For Members</h3>
-        <ul>
-          <li>No app to install</li>
-          <li>No account or personal info</li>
-          <li>Machine-specific history</li>
-          <li>Strength & cardio supported</li>
-          <li>Data stays private on their phone</li>
-          <li>Export & re-upload anytime</li>
-        </ul>
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="container">
+      <div class="section-title">
+        <h2>What makes ScanLiftLog different</h2>
+        <p>Designed to remove the friction that stops people from tracking consistently.</p>
       </div>
-      <div class="card" id="owners">
-        <h3>For Gym Owners</h3>
-        <ul>
-          <li>Works on any machine</li>
-          <li>No hardware or integrations</li>
-          <li>Just apply QR stickers</li>
-          <li>Instant rollout</li>
-          <li>Cancel anytime</li>
-          <li>Future analytics dashboard</li>
-        </ul>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Machine-specific history</h3>
+          <p>Your log is anchored to the exact equipment you’re using — no searching, no scrolling, no confusion.</p>
+        </div>
+        <div class="card">
+          <h3>Universal across brands</h3>
+          <p>Works for selectorized machines, free weights, racks, cables, and cardio — any gym, any manufacturer.</p>
+        </div>
+        <div class="card">
+          <h3>Private by default</h3>
+          <p>No personal info required. Member history stays on-device for MVP use cases.</p>
+        </div>
+        <div class="card">
+          <h3>Download + Upload</h3>
+          <p>Members can back up their workout history and restore it when they switch phones.</p>
+        </div>
+        <div class="card">
+          <h3>Simple gym rollout</h3>
+          <p>Print and apply labels. Done. No app onboarding sessions, no member accounts to manage.</p>
+        </div>
+        <div class="card">
+          <h3>Admin analytics ready</h3>
+          <p>Optional: track scans, saves, most-used machines, dead zones, and engagement by time/day.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- DIFFERENTIATION -->
-  <section class="section wrap">
-    <h2>What Makes ScanLiftLog Different</h2>
-    <p>
-      ScanLiftLog is the first universal, machine-level workout log that works in any gym,
-      on any equipment, with zero setup for members.
-    </p>
-    <div class="grid" style="margin-top:24px;">
-      <div class="card">Not brand-locked</div>
-      <div class="card">Not machine-specific</div>
-      <div class="card">Not an app</div>
-      <div class="card">Not a kiosk</div>
-      <div class="card">Not a wearable</div>
-      <div class="card">Just a QR code and a phone</div>
+  <!-- SCREENSHOTS -->
+  <section id="screenshots">
+    <div class="container">
+      <div class="section-title">
+        <h2>Product screenshots</h2>
+        <p>
+          These are real UI screens from the live experience: strength logging, cardio logging, and history review.
+        </p>
+      </div>
+
+      <div class="shots-grid">
+        <div class="shot">
+          <img
+            src="assets/screenshots/assets-ui-strength.png.jpg"
+            alt="Strength logging screen showing sets, weight, reps"
+            loading="lazy"
+          />
+          <div class="caption">Strength logging: sets, weight, reps, notes, and exercise.</div>
+        </div>
+
+        <div class="shot">
+          <img
+            src="assets/screenshots/assets-ui-cardio.png.jpg"
+            alt="Cardio logging screen showing minutes and optional stats"
+            loading="lazy"
+          />
+          <div class="caption">Cardio logging: minutes required, optional calories/distance/incline/speed.</div>
+        </div>
+
+        <div class="shot">
+          <img
+            src="assets/screenshots/assets-ui-history.png.jpg"
+            alt="History screen showing saved workouts and set breakdown"
+            loading="lazy"
+          />
+          <div class="caption">History view: quickly see recent sessions and expand details per workout.</div>
+        </div>
+
+        <!-- If you want a fourth screenshot later, add it here. For now we show the QR sample in next section. -->
+        <div class="card">
+          <h3 style="margin-top:0">Tip for your screenshots</h3>
+          <p>
+            For the cleanest look on the marketing page, keep screenshots consistent:
+            same phone zoom level, same top spacing, and avoid cropping off headers.
+          </p>
+          <p style="margin-top:10px;color:var(--muted)">
+            If you upload a better “hero” screenshot later, we can swap it into the top-right hero panel.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- USE CASE -->
-  <section class="section wrap">
-    <h2>In the Real World</h2>
-    <p>
-      A member walks up to the leg press.  
-      They scan the sticker.  
-      Their past leg press sessions appear instantly.  
-      They beat their last set.  
-      They leave stronger — and more engaged.
-    </p>
+  <!-- QR LABELS -->
+  <section id="qr-labels">
+    <div class="container">
+      <div class="section-title">
+        <h2>QR label examples</h2>
+        <p>
+          Sample labels you can print and apply to machines. Clear gym + machine naming, with “Powered by ScanLiftLog”.
+        </p>
+      </div>
+
+      <div class="shots-grid">
+        <div class="shot">
+          <img
+            src="assets/screenshots/assets-qr-code.png.png"
+            alt="Example machine QR labels for ScanLiftLog"
+            loading="lazy"
+          />
+          <div class="caption">Example QR label sheet: gym + machine name + ScanLiftLog branding.</div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-top:0">Recommended label size</h3>
+          <p>
+            2&quot; x 2&quot; works well for most equipment and is large enough to scan quickly.
+            For tight areas, 1.5&quot; x 1.5&quot; can still scan reliably if printed cleanly.
+          </p>
+          <p style="margin-top:10px;color:var(--muted)">
+            For production, use a durable label stock (water-resistant) and consider a clear overlay if machines get heavy cleaning.
+          </p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- CTA -->
-  <section class="section wrap" style="text-align:center;">
-    <h2>Ready to Try ScanLiftLog in Your Gym?</h2>
-    <p>Free pilot programs available for early partners.</p>
-    <div class="btnrow">
-      <a class="btn primary" href="mailto:info@scanliftlog.com">Request a Free Pilot</a>
-      <a class="btn" href="mailto:info@scanliftlog.com">Contact Us</a>
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="container">
+      <div class="section-title">
+        <h2>Simple rollout options</h2>
+        <p>
+          Keep it easy at launch. Start with a pilot, then expand gym-wide once members adopt it.
+        </p>
+      </div>
+
+      <div class="pricing">
+        <div class="price">
+          <span class="badge">Pilot</span>
+          <h3>Starter rollout</h3>
+          <div class="amount">$0<span class="per">to start</span></div>
+          <ul>
+            <li>Limited machine set (e.g., 10–25 labels)</li>
+            <li>Strength + cardio templates</li>
+            <li>Download + Upload data</li>
+            <li>1 gym ID configured</li>
+          </ul>
+        </div>
+
+        <div class="price" style="border-color: rgba(139,92,246,.45);">
+          <span class="badge">Most common</span>
+          <h3>Full gym deployment</h3>
+          <div class="amount">Custom<span class="per">per location</span></div>
+          <ul>
+            <li>All machines labeled (strength + cardio)</li>
+            <li>Gym-specific machine naming</li>
+            <li>Printing guidance and label templates</li>
+            <li>Optional manager/admin QR</li>
+          </ul>
+        </div>
+
+        <div class="price">
+          <span class="badge">Analytics</span>
+          <h3>Admin dashboard</h3>
+          <div class="amount">Custom<span class="per">add-on</span></div>
+          <ul>
+            <li>Total scans + workouts saved</li>
+            <li>Top machines and dead machines</li>
+            <li>Usage by day/hour</li>
+            <li>Unique devices + repeat usage</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="container">
+      <div class="section-title">
+        <h2>FAQ</h2>
+        <p>Quick answers to common questions gyms and members ask.</p>
+      </div>
+
+      <div class="faq">
+        <details open>
+          <summary>Does this require an app download?</summary>
+          <p>No. ScanLiftLog is QR-first and opens instantly in the mobile browser.</p>
+        </details>
+
+        <details>
+          <summary>Do members need to create an account?</summary>
+          <p>No personal information is required. History stays on-device by default, and members can export/import data.</p>
+        </details>
+
+        <details>
+          <summary>What happens if a gym cancels?</summary>
+          <p>Gyms can be set to ACTIVE/DISABLED. When disabled, QR scans show “service inactive” without removing stickers.</p>
+        </details>
+
+        <details>
+          <summary>Will this break if people switch phones?</summary>
+          <p>No — members can Download their data and Upload it on a new device to restore their history.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="hero-card">
+        <div class="inner">
+          <div class="section-title" style="margin-bottom:10px">
+            <h2 style="margin:0">Request a demo</h2>
+            <p style="margin:0;color:var(--muted)">
+              Want to pilot this in your gym? I’ll help you set up your gym ID and generate your first set of QR labels.
+            </p>
+          </div>
+
+          <div class="cta-row">
+            <!-- Replace the email with your preferred address or a form link when ready -->
+            <a class="btn primary" href="mailto:hello@scanliftlog.com?subject=ScanLiftLog%20Demo%20Request&body=Gym%20name%3A%0ALocation%3A%0AApprox.%20machine%20count%3A%0A">Email to schedule</a>
+            <a class="btn" href="https://scanliftlog.com/g/TEST/TRED" target="_blank" rel="noopener">Open demo link</a>
+          </div>
+
+          <div class="mini">
+            If you don’t have email set up yet, keep the button and swap it later to a contact form.
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <footer>
-    Built in New York • Privacy-first • © <span id="y"></span> ScanLiftLog
+    <div class="container">
+      <div class="footer-row">
+        <div class="pill">
+          <div class="logo" style="width:22px;height:22px;border-radius:9px"></div>
+          <div class="small"><strong>ScanLiftLog</strong> — Powered by QR-first workout logging</div>
+        </div>
+        <div class="small">© <span id="y"></span> ScanLiftLog. All rights reserved.</div>
+      </div>
+    </div>
   </footer>
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
   </script>
-
 </body>
 </html>
