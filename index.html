@@ -34,6 +34,7 @@
     }
     a{color:inherit}
     .container{max-width:1100px;margin:0 auto;padding:0 18px}
+
     .nav{
       position:sticky; top:0; z-index:20;
       backdrop-filter: blur(10px);
@@ -68,12 +69,14 @@
       padding:8px 10px;
       border-radius:12px;
       border:1px solid transparent;
+      white-space:nowrap;
     }
     .nav-links a:hover{
       border-color:var(--line);
       background: rgba(255,255,255,.04);
       color:var(--text);
     }
+
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
       gap:10px;
@@ -100,6 +103,7 @@
       align-items:stretch;
     }
     @media (max-width: 980px){ .hero-grid{grid-template-columns:1fr} }
+
     .hero-card{
       border:1px solid var(--line);
       background: rgba(18,19,24,.72);
@@ -145,33 +149,39 @@
       display:flex; flex-direction:column; gap:12px;
       padding:18px;
       background: rgba(15,16,21,.72);
+      align-items:center;
+      justify-content:center;
     }
+
+    /* “Shot” cards */
     .shot{
       border:1px solid rgba(255,255,255,.12);
       border-radius: 18px;
       background: rgba(255,255,255,.03);
       overflow:hidden;
       box-shadow: 0 14px 40px rgba(0,0,0,.30);
+      width:100%;
     }
-    .shot img{width:100%;display:block;height:auto;}
+    .shot img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
     .caption{
       padding:10px 12px;
       border-top:1px solid rgba(255,255,255,.10);
       color: var(--muted);
       font-size:13px;
     }
-.shot {
-  max-width: 360px;      /* phone-sized width */
-  margin: 0 auto;        /* center it */
-}
 
-.shots-grid .shot {
-  max-width: 360px;
-}
-
-.hero-media .shot {
-  max-width: 300px;
-}
+    /* Phone screenshot sizing (fixes the “massive images” problem) */
+    .shot.phone{
+      max-width: 320px;      /* key: caps phone screenshots */
+      margin: 0 auto;
+    }
+    @media (min-width: 981px){
+      .hero-media .shot.phone{ max-width: 300px; }
+    }
 
     section{padding:30px 0}
     .section-title{
@@ -233,8 +243,12 @@
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap:14px;
+      align-items:start;
     }
     @media (max-width: 980px){ .shots-grid{grid-template-columns:1fr} }
+
+    /* Center shots nicely inside the grid so they don’t drift */
+    .shots-grid .shot.phone{ justify-self:center; }
 
     .pricing{
       display:grid;
@@ -370,18 +384,20 @@
 
         <!-- HERO VISUAL -->
         <div class="hero-card hero-media">
-          <div class="shot">
+          <div class="shot phone">
             <img
-  src="assets/screenshots/assetsui-strength.png.jpg"
-  alt="ScanLiftLog strength logging UI"
-  loading="lazy"
-/>
+              src="assets/screenshots/assetsui-strength.png.jpg"
+              alt="ScanLiftLog strength logging UI"
+              loading="lazy"
+            />
+            <div class="caption">Strength logging UI — sets, weight, reps, and notes.</div>
+          </div>
 
-<img
-  src="assets/screenshots/assetsui-cardio.png.jpg"
-  alt="ScanLiftLog cardio logging UI"
-  loading="lazy"
-  
+          <div class="shot phone">
+            <img
+              src="assets/screenshots/assetsui-cardio.png.jpg"
+              alt="ScanLiftLog cardio logging UI"
+              loading="lazy"
             />
             <div class="caption">Cardio logging UI — minutes required, optional metrics like calories, distance, incline, speed.</div>
           </div>
@@ -395,9 +411,7 @@
     <div class="container">
       <div class="section-title">
         <h2>How it works</h2>
-        <p>
-          Simple for members. Simple for gyms. You label machines once, and members scan to log forever.
-        </p>
+        <p>Simple for members. Simple for gyms. You label machines once, and members scan to log forever.</p>
       </div>
 
       <div class="steps">
@@ -471,45 +485,53 @@
   </section>
 
   <!-- SCREENSHOTS -->
-  <div class="shots-grid">
-  <div class="shot">
-    <img
-      src="assets/screenshots/assetsui-strength.png.jpg"
-      alt="Strength logging screen showing sets, weight, reps"
-      loading="lazy"
-    />
-    <div class="caption">Strength logging: sets, weight, reps, notes, and exercise.</div>
-  </div>
+  <section id="screenshots">
+    <div class="container">
+      <div class="section-title">
+        <h2>Product screenshots</h2>
+        <p>Real UI screens from the live experience: strength logging, cardio logging, and history review.</p>
+      </div>
 
-  <div class="shot">
-    <img
-      src="assets/screenshots/assetsui-cardio.png.jpg"
-      alt="Cardio logging screen showing minutes and optional stats"
-      loading="lazy"
-    />
-    <div class="caption">Cardio logging: minutes required, optional calories/distance/incline/speed.</div>
-  </div>
+      <div class="shots-grid">
+        <div class="shot phone">
+          <img
+            src="assets/screenshots/assetsui-strength.png.jpg"
+            alt="Strength logging screen showing sets, weight, reps"
+            loading="lazy"
+          />
+          <div class="caption">Strength logging: sets, weight, reps, notes, and exercise.</div>
+        </div>
 
-  <div class="shot">
-    <img
-      src="assets/screenshots/assetsui-history.png.jpg"
-      alt="History screen showing saved workouts and set breakdown"
-      loading="lazy"
-    />
-    <div class="caption">History view: quickly see recent sessions and expand details per workout.</div>
-  </div>
+        <div class="shot phone">
+          <img
+            src="assets/screenshots/assetsui-cardio.png.jpg"
+            alt="Cardio logging screen showing minutes and optional stats"
+            loading="lazy"
+          />
+          <div class="caption">Cardio logging: minutes required, optional calories/distance/incline/speed.</div>
+        </div>
 
-  <div class="card">
-    <h3 style="margin-top:0">Data portability built-in</h3>
-    <p>
-      Users can export their data to a file and re-import it on a new device. This protects workout history if a phone is replaced.
-    </p>
-    <p style="margin-top:10px;color:var(--muted)">
-      Note: data is stored locally on the user’s device by default, so clearing browser storage can remove history.
-    </p>
-  </div>
-</div>
+        <div class="shot phone">
+          <img
+            src="assets/screenshots/assetsui-history.png.jpg"
+            alt="History screen showing saved workouts and set breakdown"
+            loading="lazy"
+          />
+          <div class="caption">History view: quickly see recent sessions and expand details per workout.</div>
+        </div>
 
+        <div class="card">
+          <h3 style="margin-top:0">Data portability built-in</h3>
+          <p>
+            Users can export their data to a file and re-import it on a new device. This helps protect workout history if a phone is replaced.
+          </p>
+          <p style="margin-top:10px;color:var(--muted)">
+            Note: data is stored locally on the user’s device by default, so clearing browser storage can remove history.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- QR LABELS -->
   <section id="qr-labels">
@@ -521,7 +543,8 @@
 
       <div class="shots-grid">
         <div class="shot">
-          <img src="assets/screenshots/assetui-QRCode.png.png" alt="QR label examples" loading="lazy">
+          <img
+            src="assets/screenshots/assetui-QRCode.png.png"
             alt="Example machine QR labels for ScanLiftLog"
             loading="lazy"
           />
@@ -635,12 +658,8 @@
           </div>
 
           <div class="cta-row">
-            <a class="btn primary" href="mailto:hello@scanliftlog.com?subject=ScanLiftLog%20Demo%20Request&body=Gym%20name%3A%0ALocation%3A%0AApprox.%20machine%20count%3A%0A">Email to schedule</a>
+            <a class="btn primary" href="mailto:hello@scanliftlog.com?subject=ScanLiftLog%20Demo%20Request">Email to schedule</a>
             <a class="btn" href="https://scanliftlog.com/g/TEST/TRED" target="_blank" rel="noopener">Open demo link</a>
-          </div>
-
-          <div class="mini">
-            Replace the email address anytime. You can also link this button to a form later.
           </div>
         </div>
       </div>
