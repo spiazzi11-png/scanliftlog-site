@@ -231,6 +231,39 @@
       .hero-media .shot.phone{ max-width: 300px; }
     }
 
+    /* ===========================
+       DESKTOP HERO BALANCE (NO MOBILE IMPACT)
+       =========================== */
+    @media (min-width: 981px){
+      .hero-card.hero-copy .inner{
+        min-height: 520px;       /* adjust 480–620 if desired */
+        display:flex;
+        flex-direction:column;
+        justify-content:center;  /* vertical centering */
+      }
+      .trust-strip{
+        margin-top:18px;
+        display:flex;
+        flex-wrap:wrap;
+        gap:10px;
+      }
+      .trust-pill{
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        padding:8px 10px;
+        border-radius:999px;
+        border:1px solid rgba(255,255,255,.10);
+        background: rgba(255,255,255,.03);
+        color: var(--muted);
+        font-size:13px;
+        font-weight:700;
+      }
+    }
+    @media (min-width: 1200px){
+      .hero{ padding: 70px 0 26px; }
+    }
+
     section{padding:30px 0}
     .section-title{
       display:flex; align-items:flex-end; justify-content:space-between;
@@ -458,7 +491,7 @@
   <header class="hero">
     <div class="container">
       <div class="hero-grid">
-        <div class="hero-card">
+        <div class="hero-card hero-copy">
           <div class="inner">
             <div class="kicker">No app • No account • QR-first</div>
             <h1>Machine-specific workout logging in seconds.</h1>
@@ -471,6 +504,13 @@
               <a class="btn primary" href="#contact">Request a gym demo</a>
               <a class="btn" href="#screenshots">See the UI</a>
               <a class="btn" href="#qr-labels">See label examples</a>
+            </div>
+
+            <div class="trust-strip">
+              <div class="trust-pill">No app download</div>
+              <div class="trust-pill">No account required</div>
+              <div class="trust-pill">Private by default</div>
+              <div class="trust-pill">Works on any machine</div>
             </div>
 
             <div class="mini">
@@ -537,7 +577,7 @@
           <div class="num">4</div>
           <div>
             <h3>Download + Upload to move phones</h3>
-            <p>Members can export their history to a file and re-upload it on a new device to restore it.</p>
+            <p>Members can export their data to a file and re-upload it on a new device to restore it.</p>
           </div>
         </div>
       </div>
