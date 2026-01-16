@@ -35,6 +35,7 @@
     a{color:inherit}
     .container{max-width:1100px;margin:0 auto;padding:0 18px}
 
+    /* NAV */
     .nav{
       position:sticky; top:0; z-index:20;
       backdrop-filter: blur(10px);
@@ -57,6 +58,8 @@
         linear-gradient(135deg, rgba(139,92,246,.95), rgba(34,197,94,.85));
       box-shadow: var(--shadow);
     }
+
+    /* Desktop links */
     .nav-links{
       display:flex; align-items:center; gap:14px;
       color:var(--muted);
@@ -77,6 +80,54 @@
       color:var(--text);
     }
 
+    /* Mobile nav toggle */
+    .nav-toggle{
+      display:none;
+      width:44px;height:44px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      cursor:pointer;
+      align-items:center;
+      justify-content:center;
+      box-shadow: 0 8px 26px rgba(0,0,0,.25);
+    }
+    .nav-toggle:active{transform: translateY(1px);}
+    .hamburger{
+      width:18px;height:12px; position:relative;
+    }
+    .hamburger span{
+      position:absolute; left:0; right:0;
+      height:2px; border-radius:999px;
+      background: rgba(255,255,255,.85);
+    }
+    .hamburger span:nth-child(1){top:0}
+    .hamburger span:nth-child(2){top:5px}
+    .hamburger span:nth-child(3){top:10px}
+
+    /* Mobile dropdown panel */
+    .mobile-menu{
+      display:none;
+      border-top:1px solid var(--line);
+      padding:12px 0 16px;
+    }
+    .mobile-menu .links{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .mobile-menu a{
+      text-decoration:none;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:var(--text);
+      font-weight:700;
+    }
+
+    /* Buttons */
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
       gap:10px;
@@ -128,7 +179,7 @@
       line-height:1.07;
       letter-spacing:-.7px;
     }
-    @media (max-width: 520px){ h1{font-size:36px} }
+    @media (max-width: 520px){ h1{font-size:34px} }
     .sub{
       margin:0 0 18px;
       color: var(--muted);
@@ -153,7 +204,6 @@
       justify-content:center;
     }
 
-    /* “Shot” cards */
     .shot{
       border:1px solid rgba(255,255,255,.12);
       border-radius: 18px;
@@ -173,10 +223,8 @@
       color: var(--muted);
       font-size:13px;
     }
-
-    /* Phone screenshot sizing (fixes the “massive images” problem) */
     .shot.phone{
-      max-width: 320px;      /* key: caps phone screenshots */
+      max-width: 320px;
       margin: 0 auto;
     }
     @media (min-width: 981px){
@@ -246,8 +294,6 @@
       align-items:start;
     }
     @media (max-width: 980px){ .shots-grid{grid-template-columns:1fr} }
-
-    /* Center shots nicely inside the grid so they don’t drift */
     .shots-grid .shot.phone{ justify-self:center; }
 
     .pricing{
@@ -333,6 +379,34 @@
       color:var(--text);
       border-bottom-color:rgba(255,255,255,.35);
     }
+
+    /* ===========================
+       MOBILE POLISH (NO DESKTOP BREAK)
+       =========================== */
+    @media (max-width: 720px){
+      .container{padding:0 14px}
+
+      /* Replace messy wrapped nav with hamburger */
+      .nav-links{display:none}
+      .nav-toggle{display:inline-flex}
+
+      .hero{padding:34px 0 10px;}
+      .hero-card .inner{padding:18px;}
+      .kicker{font-size:12px;padding:7px 10px}
+      .sub{font-size:16px}
+      .cta-row{gap:10px}
+      .btn{padding:12px 14px;border-radius:14px}
+      .section-title{flex-direction:column; align-items:flex-start; gap:8px}
+      .section-title h2{font-size:24px}
+      section{padding:22px 0}
+
+      /* Make cards feel less cramped */
+      .card, .step, .price, .faq{padding:16px;border-radius:16px}
+
+      /* Better footer wrapping */
+      .footer-row{flex-direction:column; align-items:flex-start}
+      .footer-links{row-gap:10px}
+    }
   </style>
 </head>
 
@@ -344,7 +418,16 @@
           <div class="logo" aria-hidden="true"></div>
           <div>ScanLiftLog</div>
         </div>
-        <div class="nav-links">
+
+        <!-- Mobile nav button -->
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false">
+          <div class="hamburger" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+        </button>
+
+        <!-- Desktop links -->
+        <div class="nav-links" id="desktopNav">
           <a href="#how-it-works">How it works</a>
           <a href="#features">Features</a>
           <a href="#screenshots">Screenshots</a>
@@ -354,6 +437,20 @@
           <a class="btn" href="https://scanliftlog.com/g/TEST/TRED" target="_blank" rel="noopener">Try demo</a>
         </div>
       </div>
+
+      <!-- Mobile dropdown -->
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="links">
+          <a href="#how-it-works">How it works</a>
+          <a href="#features">Features</a>
+          <a href="#screenshots">Screenshots</a>
+          <a href="#qr-labels">QR labels</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#contact">Contact</a>
+          <a class="btn primary" href="https://scanliftlog.com/g/TEST/TRED" target="_blank" rel="noopener">Try demo</a>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -564,168 +661,168 @@
       </div>
     </div>
   </section>
-<!-- WHY GYMS ADOPT -->
-<section id="why-gyms-adopt">
-  <div class="container">
-    <div class="section-title">
-      <h2>Why gyms adopt ScanLiftLog</h2>
-      <p>It’s not just a feature for members — it’s a business upgrade for your floor.</p>
-    </div>
 
-    <div class="grid-3">
-      <div class="card">
-        <h3>Increase member retention</h3>
-        <p>
-          Members quit when they lose momentum. ScanLiftLog keeps progress visible at the exact machine they’re using.
-          When members see improvement, they stay longer.
-        </p>
+  <!-- WHY GYMS ADOPT -->
+  <section id="why-gyms-adopt">
+    <div class="container">
+      <div class="section-title">
+        <h2>Why gyms adopt ScanLiftLog</h2>
+        <p>It’s not just a feature for members — it’s a business upgrade for your floor.</p>
       </div>
 
-      <div class="card">
-        <h3>Differentiate your gym</h3>
-        <p>
-          Every gym has the same machines. ScanLiftLog turns your floor into a “smart gym” experience
-          without replacing a single piece of equipment.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Zero operational burden</h3>
-        <p>
-          No accounts. No apps. No staff training. Apply the labels once and it runs itself.
-          Members just scan and go.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>High perceived value</h3>
-        <p>
-          For less than the cost of one new machine, your entire floor becomes interactive.
-          It feels like a premium upgrade to members.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Trainer-friendly</h3>
-        <p>
-          Trainers love it. Clients instantly see their last session on that exact machine.
-          No clipboards, no apps, no friction.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Risk-free pilot</h3>
-        <p>
-          Start with a small set of machines. If members don’t use it, remove it.
-          If they do, you’ve modernized your gym with almost no downside.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
- <!-- PRICING -->
-<section id="pricing">
-  <div class="container">
-    <div class="section-title">
-      <h2>Simple, equipment-based pricing</h2>
-      <p>
-        ScanLiftLog is a single, complete service. Every gym gets the same features.
-        Pricing is based only on how many machines you have on your floor.
-      </p>
-    </div>
-
-    <div class="pricing">
-      <div class="price">
-        <span class="badge">Up to 50 machines</span>
-        <h3>Small gyms</h3>
-        <div class="amount">$29<span class="per">/ month</span></div>
-      </div>
-
-      <div class="price" style="border-color: rgba(139,92,246,.45);">
-        <span class="badge">51–150 machines</span>
-        <h3>Most gyms</h3>
-        <div class="amount">$59<span class="per">/ month</span></div>
-      </div>
-
-      <div class="price">
-        <span class="badge">151–300 machines</span>
-        <h3>Large gyms</h3>
-        <div class="amount">$99<span class="per">/ month</span></div>
-      </div>
-
-      <div class="price">
-        <span class="badge">300+ machines</span>
-        <h3>Enterprise gyms</h3>
-        <div class="amount">$149<span class="per">/ month</span></div>
-      </div>
-    </div>
-
-    <div class="card" style="margin-top:18px">
-      <h3 style="margin-top:0">What’s included</h3>
-      <p style="color:var(--muted); margin:6px 0 0">
-        Every plan includes the full ScanLiftLog experience:
-      </p>
-      <ul>
-        <li>Unlimited scans and workout logs</li>
-        <li>Strength and cardio machine support</li>
-        <li>Machine-specific history per user</li>
-        <li>Download + Upload to move data to a new phone</li>
-        <li>Gym-specific QR codes and machine naming</li>
-        <li>Ongoing hosting and maintenance</li>
-      </ul>
-    </div>
-
-    <div class="card" style="margin-top:14px">
-      <h3 style="margin-top:0">Setup & terms</h3>
-      <p style="color:var(--muted); margin:6px 0 0">
-        A one-time <strong>$99 setup fee</strong> covers gym configuration, QR generation,
-        and print-ready label files.
-      </p>
-      <p style="color:var(--muted); margin:10px 0 0">
-        The setup fee is <strong>waived</strong> when you commit to any 3-month or longer term.
-      </p>
-
-      <div class="hr"></div>
-
-      <h3 style="margin:0 0 8px">Term discounts</h3>
-      <p style="color:var(--muted); margin:0 0 10px">
-        Discounts apply to term commitments (3/6/12 months). Month-to-month is the standard rate.
-      </p>
-
-      <div class="grid-3" style="gap:12px">
-        <div class="card" style="margin:0; padding:14px; background: rgba(255,255,255,.03);">
-          <div class="badge">Month-to-month</div>
-          <div style="font-weight:900; margin-top:8px">0% discount</div>
-          <div style="color:var(--muted); margin-top:6px">Standard rate, cancel anytime.</div>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Increase member retention</h3>
+          <p>
+            Members quit when they lose momentum. ScanLiftLog keeps progress visible at the exact machine they’re using.
+            When members see improvement, they stay longer.
+          </p>
         </div>
 
-        <div class="card" style="margin:0; padding:14px; background: rgba(255,255,255,.03);">
-          <div class="badge">3 months</div>
-          <div style="font-weight:900; margin-top:8px">5% discount</div>
-          <div style="color:var(--muted); margin-top:6px">Setup fee waived.</div>
+        <div class="card">
+          <h3>Differentiate your gym</h3>
+          <p>
+            Every gym has the same machines. ScanLiftLog turns your floor into a “smart gym” experience
+            without replacing a single piece of equipment.
+          </p>
         </div>
 
-        <div class="card" style="margin:0; padding:14px; background: rgba(255,255,255,.03);">
-          <div class="badge">6 months</div>
-          <div style="font-weight:900; margin-top:8px">10% discount</div>
-          <div style="color:var(--muted); margin-top:6px">Setup fee waived.</div>
+        <div class="card">
+          <h3>Zero operational burden</h3>
+          <p>
+            No accounts. No apps. No staff training. Apply the labels once and it runs itself.
+            Members just scan and go.
+          </p>
         </div>
 
-        <div class="card" style="margin:0; padding:14px; background: rgba(255,255,255,.03);">
-          <div class="badge">12 months</div>
-          <div style="font-weight:900; margin-top:8px">15% discount</div>
-          <div style="color:var(--muted); margin-top:6px">Setup fee waived.</div>
+        <div class="card">
+          <h3>High perceived value</h3>
+          <p>
+            For less than the cost of one new machine, your entire floor becomes interactive.
+            It feels like a premium upgrade to members.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Trainer-friendly</h3>
+          <p>
+            Trainers love it. Clients instantly see their last session on that exact machine.
+            No clipboards, no apps, no friction.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Risk-free pilot</h3>
+          <p>
+            Start with a small set of machines. If members don’t use it, remove it.
+            If they do, you’ve modernized your gym with almost no downside.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="container">
+      <div class="section-title">
+        <h2>Simple, equipment-based pricing</h2>
+        <p>
+          ScanLiftLog is a single, complete service. Every gym gets the same features.
+          Pricing is based only on how many machines you have on your floor.
+        </p>
+      </div>
+
+      <div class="pricing">
+        <div class="price">
+          <span class="badge">Up to 50 machines</span>
+          <h3>Small gyms</h3>
+          <div class="amount">$29<span class="per">/ month</span></div>
+        </div>
+
+        <div class="price" style="border-color: rgba(139,92,246,.45);">
+          <span class="badge">51–150 machines</span>
+          <h3>Most gyms</h3>
+          <div class="amount">$59<span class="per">/ month</span></div>
+        </div>
+
+        <div class="price">
+          <span class="badge">151–300 machines</span>
+          <h3>Large gyms</h3>
+          <div class="amount">$99<span class="per">/ month</span></div>
+        </div>
+
+        <div class="price">
+          <span class="badge">300+ machines</span>
+          <h3>Enterprise gyms</h3>
+          <div class="amount">$149<span class="per">/ month</span></div>
         </div>
       </div>
 
-      <p style="color:var(--muted); margin-top:12px">
-        Want a quick quote? Email your approximate machine count and location count.
-      </p>
-    </div>
-  </div>
-</section>
+      <div class="card" style="margin-top:18px">
+        <h3 style="margin-top:0">What’s included</h3>
+        <p style="color:var(--muted); margin:6px 0 0">
+          Every plan includes the full ScanLiftLog experience:
+        </p>
+        <ul>
+          <li>Unlimited scans and workout logs</li>
+          <li>Strength and cardio machine support</li>
+          <li>Machine-specific history per user</li>
+          <li>Download + Upload to move data to a new phone</li>
+          <li>Gym-specific QR codes and machine naming</li>
+          <li>Ongoing hosting and maintenance</li>
+        </ul>
+      </div>
 
+      <div class="card" style="margin-top:14px">
+        <h3 style="margin-top:0">Setup & terms</h3>
+        <p style="color:var(--muted); margin:6px 0 0">
+          A one-time <strong>$99 setup fee</strong> covers gym configuration, QR generation,
+          and print-ready label files.
+        </p>
+        <p style="color:var(--muted); margin:10px 0 0">
+          The setup fee is <strong>waived</strong> when you commit to any 3-month or longer term.
+        </p>
+
+        <div class="hr"></div>
+
+        <h3 style="margin:0 0 8px">Term discounts</h3>
+        <p style="color:var(--muted); margin:0 0 10px">
+          Discounts apply to term commitments (3/6/12 months). Month-to-month is the standard rate.
+        </p>
+
+        <div class="grid-3" style="gap:12px">
+          <div class="card" style="margin:0; padding:14px; background: rgba(255,255,255,.03);">
+            <div class="badge">Month-to-month</div>
+            <div style="font-weight:900; margin-top:8px">0% discount</div>
+            <div style="color:var(--muted); margin-top:6px">Standard rate, cancel anytime.</div>
+          </div>
+
+          <div class="card" style="margin:0; padding:14px; background: rgba(255,255,255,.03);">
+            <div class="badge">3 months</div>
+            <div style="font-weight:900; margin-top:8px">5% discount</div>
+            <div style="color:var(--muted); margin-top:6px">Setup fee waived.</div>
+          </div>
+
+          <div class="card" style="margin:0; padding:14px; background: rgba(255,255,255,.03);">
+            <div class="badge">6 months</div>
+            <div style="font-weight:900; margin-top:8px">10% discount</div>
+            <div style="color:var(--muted); margin-top:6px">Setup fee waived.</div>
+          </div>
+
+          <div class="card" style="margin:0; padding:14px; background: rgba(255,255,255,.03);">
+            <div class="badge">12 months</div>
+            <div style="font-weight:900; margin-top:8px">15% discount</div>
+            <div style="color:var(--muted); margin-top:6px">Setup fee waived.</div>
+          </div>
+        </div>
+
+        <p style="color:var(--muted); margin-top:12px">
+          Want a quick quote? Email your approximate machine count and location count.
+        </p>
+      </div>
+    </div>
+  </section>
 
   <!-- FAQ -->
   <section>
@@ -774,42 +871,43 @@
       </div>
     </div>
   </section>
-<section class="cta" style="text-align:center; padding:60px 20px;">
-  <h2>Ready to Get Started?</h2>
 
-  <p style="max-width:640px; margin:0 auto 20px;">
-    Sign up directly from our website in minutes—no sales calls,
-    no paperwork, no back-and-forth.
-  </p>
+  <section class="cta" style="text-align:center; padding:60px 20px;">
+    <h2>Ready to Get Started?</h2>
 
-  <ol style="max-width:520px; margin:0 auto 24px; text-align:left;">
-    <li>Submit your gym details and equipment list</li>
-    <li>Review and accept the Service Agreement</li>
-    <li>Choose your plan</li>
-    <li>We generate and ship your QR labels</li>
-    <li>Your gym goes live</li>
-  </ol>
+    <p style="max-width:640px; margin:0 auto 20px;">
+      Sign up directly from our website in minutes—no sales calls,
+      no paperwork, no back-and-forth.
+    </p>
 
-  <a href="/signup.html" style="
-    display:inline-block;
-    padding:14px 26px;
-    background:#000;
-    color:#fff;
-    text-decoration:none;
-    border-radius:8px;
-    font-weight:600;
-  ">
-    Start Now
-  </a>
+    <ol style="max-width:520px; margin:0 auto 24px; text-align:left;">
+      <li>Submit your gym details and equipment list</li>
+      <li>Review and accept the Service Agreement</li>
+      <li>Choose your plan</li>
+      <li>We generate and ship your QR labels</li>
+      <li>Your gym goes live</li>
+    </ol>
 
-  <div style="margin-top:12px; font-size:14px;">
-    View our
-    <a href="/agreement/scanliftlog-service-agreement.pdf" target="_blank" rel="noopener">
-      Service Agreement
+    <a href="/signup.html" style="
+      display:inline-block;
+      padding:14px 26px;
+      background:#000;
+      color:#fff;
+      text-decoration:none;
+      border-radius:8px;
+      font-weight:600;
+    ">
+      Start Now
     </a>
-    at any time.
-  </div>
-</section>
+
+    <div style="margin-top:12px; font-size:14px;">
+      View our
+      <a href="/agreement/scanliftlog-service-agreement.pdf" target="_blank" rel="noopener">
+        Service Agreement
+      </a>
+      at any time.
+    </div>
+  </section>
 
   <footer>
     <div class="container">
@@ -819,20 +917,46 @@
           <div class="small"><strong>ScanLiftLog</strong> — Powered by QR-first workout logging</div>
         </div>
 
-      <div class="footer-links small">
-  <a href="/agreement/scanliftlog-service-agreement.pdf" target="_blank" rel="noopener">
-    Service Agreement
-  </a>
-  <a href="/privacy.html">Privacy Policy</a>
-  <a href="/terms.html">Terms of Service</a>
-  <span>© <span id="y"></span> ScanLiftLog</span>
-</div>
+        <div class="footer-links small">
+          <a href="/agreement/scanliftlog-service-agreement.pdf" target="_blank" rel="noopener">
+            Service Agreement
+          </a>
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Service</a>
+          <span>© <span id="y"></span> ScanLiftLog</span>
+        </div>
       </div>
     </div>
   </footer>
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const navToggle = document.getElementById("navToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    function closeMenu() {
+      mobileMenu.style.display = "none";
+      navToggle.setAttribute("aria-expanded", "false");
+    }
+
+    navToggle.addEventListener("click", () => {
+      const isOpen = mobileMenu.style.display === "block";
+      mobileMenu.style.display = isOpen ? "none" : "block";
+      navToggle.setAttribute("aria-expanded", String(!isOpen));
+    });
+
+    // Close menu when clicking a link
+    mobileMenu.addEventListener("click", (e) => {
+      const t = e.target;
+      if (t && t.tagName === "A") closeMenu();
+    });
+
+    // Close menu on resize back to desktop
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 720) closeMenu();
+    });
   </script>
 </body>
 </html>
