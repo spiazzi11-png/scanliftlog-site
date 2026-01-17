@@ -243,6 +243,41 @@
       }
       .hero-card.hero-media{
         justify-content:flex-start; /* remove top whitespace on desktop */
+        background:
+          radial-gradient(220px 200px at 20% 0%, rgba(139,92,246,.18), transparent 60%),
+          radial-gradient(240px 220px at 85% 15%, rgba(34,197,94,.14), transparent 60%),
+          rgba(15,16,21,.72);
+        border-color: rgba(255,255,255,.14);
+      }
+      .hero-card.hero-media::before{
+        content:"";
+        position:absolute;
+        inset:0;
+        background: linear-gradient(180deg, rgba(255,255,255,.04), transparent 40%);
+        pointer-events:none;
+        z-index:0;
+      }
+      .hero-card.hero-media > *{
+        position:relative;
+        z-index:1;
+      }
+      .hero-proof{
+        display:flex;
+        gap:12px;
+        flex-wrap:wrap;
+        margin-top:14px;
+        color:var(--muted);
+        font-size:13px;
+        font-weight:700;
+      }
+      .hero-proof span{
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        padding:6px 10px;
+        border-radius:999px;
+        border:1px solid rgba(255,255,255,.10);
+        background: rgba(255,255,255,.03);
       }
       .trust-strip{
         margin-top:18px;
@@ -268,6 +303,12 @@
     }
 
     section{padding:30px 0}
+    @media (min-width: 981px){
+      section{padding:46px 0}
+      section + section{
+        border-top:1px solid rgba(255,255,255,.08);
+      }
+    }
     .section-title{
       display:flex; align-items:flex-end; justify-content:space-between;
       gap:12px;
@@ -345,6 +386,10 @@
       box-shadow: var(--shadow);
       padding:18px;
     }
+    .price.featured{
+      border-color: rgba(139,92,246,.55);
+      background: rgba(18,19,24,.78);
+    }
     .badge{
       display:inline-flex;
       padding:6px 10px;
@@ -354,6 +399,11 @@
       color:var(--muted);
       font-weight:800;
       font-size:12px;
+    }
+    .badge.featured{
+      border-color: rgba(139,92,246,.6);
+      background: rgba(139,92,246,.18);
+      color:#e9e9ee;
     }
     .price h3{margin:10px 0 4px}
     .amount{
@@ -415,6 +465,24 @@
       color:var(--text);
       border-bottom-color:rgba(255,255,255,.35);
     }
+    .footer-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .footer-action{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      text-decoration:none;
+      font-weight:700;
+      color:var(--text);
+    }
 
     /* ===========================
        MOBILE POLISH (NO DESKTOP BREAK)
@@ -470,7 +538,7 @@
           <a href="#qr-labels">QR labels</a>
           <a href="#pricing">Pricing</a>
           <a href="#contact">Contact</a>
-          <a class="btn" href="https://scanliftlog.com/g/TEST/TRED" target="_blank" rel="noopener">Try demo</a>
+          <a class="btn primary" href="https://scanliftlog.com/g/TEST/TRED" target="_blank" rel="noopener">Try demo</a>
         </div>
       </div>
 
@@ -507,6 +575,12 @@
               <a class="btn primary" href="#contact">Request a gym demo</a>
               <a class="btn" href="#screenshots">See the UI</a>
               <a class="btn" href="#qr-labels">See label examples</a>
+            </div>
+
+            <div class="hero-proof">
+              <span>Instant in-browser logging</span>
+              <span>QR-first, no installs</span>
+              <span>Private by default</span>
             </div>
 
             <div class="trust-strip">
@@ -783,8 +857,9 @@
           <div class="amount">$29<span class="per">/ month</span></div>
         </div>
 
-        <div class="price" style="border-color: rgba(139,92,246,.45);">
+        <div class="price featured">
           <span class="badge">51–150 machines</span>
+          <span class="badge featured" style="margin-left:6px">Most popular</span>
           <h3>Most gyms</h3>
           <div class="amount">$59<span class="per">/ month</span></div>
         </div>
@@ -961,13 +1036,15 @@
         </div>
 
         <div class="footer-links small">
-          <a href="/agreement/scanliftlog-service-agreement.pdf" target="_blank" rel="noopener">
-            Service Agreement
-          </a>
           <a href="/privacy.html">Privacy Policy</a>
           <a href="/terms.html">Terms of Service</a>
           <span>© <span id="y"></span> ScanLiftLog</span>
         </div>
+      </div>
+      <div class="footer-actions" style="margin-top:12px">
+        <a class="footer-action" href="mailto:info@scanliftlog.com?subject=ScanLiftLog%20Demo%20Request">Email sales</a>
+        <a class="footer-action" href="https://scanliftlog.com/g/TEST/TRED" target="_blank" rel="noopener">Open demo</a>
+        <a class="footer-action" href="/agreement/scanliftlog-service-agreement.pdf" target="_blank" rel="noopener">Service Agreement</a>
       </div>
     </div>
   </footer>
