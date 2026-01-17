@@ -35,15 +35,6 @@
     a{color:inherit}
     .container{max-width:1100px;margin:0 auto;padding:0 18px}
 
-/* Wider desktop container so you don't get huge empty gutters */
-@media (min-width: 1100px){
-  .container{max-width:1280px;}
-}
-@media (min-width: 1400px){
-  .container{max-width:1400px;}
-}
-
-
     /* NAV */
     .nav{
       position:sticky; top:0; z-index:20;
@@ -156,13 +147,12 @@
     .btn.primary:hover{filter: brightness(1.05);}
 
     .hero{padding:54px 0 18px;}
-   .hero-grid{
-  display:grid;
-  grid-template-columns: 1.05fr .95fr; /* makes desktop feel less lopsided */
-  gap:22px;
-  align-items:stretch;
-}
-
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:22px;
+      align-items:stretch;
+    }
     @media (max-width: 980px){ .hero-grid{grid-template-columns:1fr} }
 
     .hero-card{
@@ -236,21 +226,10 @@
     .shot.phone{
       max-width: 320px;
       margin: 0 auto;
-  @media (min-width: 981px){
-  /* Use horizontal space on desktop */
-  .hero-media{
-    flex-direction:row;        /* side-by-side instead of stacked */
-    align-items:stretch;
-    justify-content:center;
-    gap:14px;
-  }
-
-  /* Bigger phones on desktop so hero doesn't look tiny */
-  .hero-media .shot.phone{
-    max-width: 360px;
-    margin: 0;
-  }
-}
+    }
+    @media (min-width: 981px){
+      .hero-media .shot.phone{ max-width: 300px; }
+    }
 
     /* ===========================
        DESKTOP HERO BALANCE (NO MOBILE IMPACT)
