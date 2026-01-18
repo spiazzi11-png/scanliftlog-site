@@ -372,6 +372,9 @@
     }
     @media (max-width: 980px){ .shots-grid{grid-template-columns:1fr} }
     .shots-grid .shot.phone{ justify-self:center; }
+    .shots-grid .shot.wide{
+      grid-column: 1 / -1;
+    }
 
     .pricing{
       display:grid;
@@ -600,7 +603,7 @@
         <div class="hero-card hero-media">
           <div class="shot phone">
             <img
-              src="assets/screenshots/assetsui-strength.png.jpg"
+              src="assets/screenshots/ClipS.jpg"
               alt="ScanLiftLog strength logging UI"
               loading="lazy"
             />
@@ -609,7 +612,7 @@
 
           <div class="shot phone">
             <img
-              src="assets/screenshots/assetsui-cardio.png.jpg"
+              src="assets/screenshots/ClipC.jpg"
               alt="ScanLiftLog cardio logging UI"
               loading="lazy"
             />
@@ -709,7 +712,7 @@
       <div class="shots-grid">
         <div class="shot phone">
           <img
-            src="assets/screenshots/assetsui-strength.png.jpg"
+            src="assets/screenshots/ClipS.jpg"
             alt="Strength logging screen showing sets, weight, reps"
             loading="lazy"
           />
@@ -718,16 +721,16 @@
 
         <div class="shot phone">
           <img
-            src="assets/screenshots/assetsui-cardio.png.jpg"
+            src="assets/screenshots/ClipC.jpg"
             alt="Cardio logging screen showing minutes and optional stats"
             loading="lazy"
           />
           <div class="caption">Cardio logging: minutes required, optional calories/distance/incline/speed.</div>
         </div>
 
-        <div class="shot phone">
+        <div class="shot wide">
           <img
-            src="assets/screenshots/assetsui-history.png.jpg"
+            src="assets/screenshots/History.jpg"
             alt="History screen showing saved workouts and set breakdown"
             loading="lazy"
           />
