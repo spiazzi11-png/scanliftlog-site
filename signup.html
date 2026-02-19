@@ -8,7 +8,7 @@
 </head>
 
 <body style="margin:0; background:#0b0c10; color:#e9e9ee; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; line-height:1.35;">
-  <!-- Top glow / background -->
+  <!-- Background glow -->
   <div style="
     position:fixed; inset:-200px; z-index:-1;
     background:
@@ -21,10 +21,7 @@
 
   <div style="max-width:900px; margin:0 auto; padding:46px 20px 70px;">
     <!-- Header -->
-    <div style="
-      display:flex; align-items:flex-start; justify-content:space-between; gap:16px;
-      margin-bottom:18px;
-    ">
+    <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:18px;">
       <div>
         <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
           <div style="
@@ -42,7 +39,7 @@
         </div>
 
         <p style="margin:0; max-width:640px; color:rgba(233,233,238,.72); font-size:14px;">
-          Fill this out to start onboarding. We’ll generate and ship your gym’s QR labels based on your equipment list.
+          Fill this out to start onboarding. We’ll generate and ship your gym’s QR labels based on your equipment list with exact quantities.
         </p>
       </div>
 
@@ -59,7 +56,8 @@
         <div style="font-size:13px; color:rgba(233,233,238,.72);">
           • Gym name & contact<br/>
           • Equipment list + quantities<br/>
-          • Term commitment
+          • Term commitment<br/>
+          • Agreement acceptance date
         </div>
       </div>
     </div>
@@ -73,178 +71,115 @@
       padding:22px;
       box-shadow: 0 22px 80px rgba(0,0,0,.45);
     ">
-      <!-- IMPORTANT: Formspree endpoint -->
       <form action="https://formspree.io/f/mpqqwbjw"
             method="POST"
             enctype="multipart/form-data"
             style="display:grid; gap:16px;">
 
-        <!-- Auto-captured submission timestamp -->
-        <input type="hidden" name="submission_date" id="submission_date">
+        <!-- Auto-captured submission timestamp (audit trail) -->
+        <input type="hidden" name="submission_timestamp" id="submission_timestamp">
 
-        <!-- Section: Gym Details -->
+        <!-- Gym Details -->
         <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:2px;">
           <div style="font-size:14px; font-weight:800; letter-spacing:.2px;">Gym details</div>
           <div style="font-size:12px; color:rgba(233,233,238,.60);">All fields required unless marked optional</div>
         </div>
 
         <div style="display:grid; grid-template-columns:1fr; gap:14px;">
-          <div style="display:grid; grid-template-columns:1fr; gap:8px;">
+          <div style="display:grid; gap:8px;">
             <label style="font-size:13px; color:rgba(233,233,238,.80);">Gym Name</label>
-            <input name="gym_name" required
-                   autocomplete="organization"
-                   style="
-                     width:100%; padding:12px 12px;
-                     border-radius:12px;
-                     border:1px solid rgba(255,255,255,.14);
-                     background:rgba(15,16,21,.85);
-                     color:#e9e9ee;
-                     outline:none;
-                   " />
+            <input name="gym_name" required autocomplete="organization"
+                   style="width:100%; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.14); background:rgba(15,16,21,.85); color:#e9e9ee; outline:none;" />
           </div>
 
-          <div style="display:grid; grid-template-columns:1fr; gap:8px;">
+          <div style="display:grid; gap:8px;">
             <label style="font-size:13px; color:rgba(233,233,238,.80);">Gym Location / Address (optional)</label>
-            <input name="gym_location"
-                   autocomplete="street-address"
-                   style="
-                     width:100%; padding:12px 12px;
-                     border-radius:12px;
-                     border:1px solid rgba(255,255,255,.14);
-                     background:rgba(15,16,21,.85);
-                     color:#e9e9ee;
-                     outline:none;
-                   " />
+            <input name="gym_location" autocomplete="street-address"
+                   style="width:100%; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.14); background:rgba(15,16,21,.85); color:#e9e9ee; outline:none;" />
           </div>
         </div>
 
-        <!-- Section: Contact -->
+        <!-- Contact -->
         <div style="height:1px; background:rgba(255,255,255,.10); margin:4px 0;"></div>
         <div style="font-size:14px; font-weight:800; letter-spacing:.2px;">Primary contact</div>
 
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
-          <div style="display:grid; grid-template-columns:1fr; gap:8px;">
+          <div style="display:grid; gap:8px;">
             <label style="font-size:13px; color:rgba(233,233,238,.80);">Primary Contact Name</label>
-            <input name="contact_name" required
-                   autocomplete="name"
-                   style="
-                     width:100%; padding:12px 12px;
-                     border-radius:12px;
-                     border:1px solid rgba(255,255,255,.14);
-                     background:rgba(15,16,21,.85);
-                     color:#e9e9ee;
-                     outline:none;
-                   " />
+            <input name="contact_name" required autocomplete="name"
+                   style="width:100%; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.14); background:rgba(15,16,21,.85); color:#e9e9ee; outline:none;" />
           </div>
 
-          <div style="display:grid; grid-template-columns:1fr; gap:8px;">
+          <div style="display:grid; gap:8px;">
             <label style="font-size:13px; color:rgba(233,233,238,.80);">Phone</label>
-            <input name="phone" required
-                   autocomplete="tel"
-                   style="
-                     width:100%; padding:12px 12px;
-                     border-radius:12px;
-                     border:1px solid rgba(255,255,255,.14);
-                     background:rgba(15,16,21,.85);
-                     color:#e9e9ee;
-                     outline:none;
-                   " />
+            <input name="phone" required autocomplete="tel"
+                   style="width:100%; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.14); background:rgba(15,16,21,.85); color:#e9e9ee; outline:none;" />
           </div>
 
-          <div style="display:grid; grid-template-columns:1fr; gap:8px;">
+          <div style="display:grid; gap:8px;">
             <label style="font-size:13px; color:rgba(233,233,238,.80);">Email</label>
-            <input name="email" type="email" required
-                   autocomplete="email"
-                   style="
-                     width:100%; padding:12px 12px;
-                     border-radius:12px;
-                     border:1px solid rgba(255,255,255,.14);
-                     background:rgba(15,16,21,.85);
-                     color:#e9e9ee;
-                     outline:none;
-                   " />
+            <input name="email" type="email" required autocomplete="email"
+                   style="width:100%; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.14); background:rgba(15,16,21,.85); color:#e9e9ee; outline:none;" />
           </div>
 
-          <div style="display:grid; grid-template-columns:1fr; gap:8px;">
-            <label style="font-size:13px; color:rgba(233,233,238,.80);">Estimated Machine Count</label>
-            <input name="machine_count" required
-                   inputmode="numeric"
-                   placeholder="e.g., 120"
-                   style="
-                     width:100%; padding:12px 12px;
-                     border-radius:12px;
-                     border:1px solid rgba(255,255,255,.14);
-                     background:rgba(15,16,21,.85);
-                     color:#e9e9ee;
-                     outline:none;
-                   " />
+          <div style="
+            border:1px solid rgba(255,255,255,.10);
+            background:rgba(10,11,16,.40);
+            border-radius:14px;
+            padding:12px;
+            color:rgba(233,233,238,.65);
+            font-size:12.5px;
+            display:flex; align-items:center;
+          ">
+            Tip: You can upload your equipment list (Excel/PDF/image) or provide a Google Sheet link.
           </div>
         </div>
 
-        <!-- Section: Equipment List -->
+        <!-- Equipment List -->
         <div style="height:1px; background:rgba(255,255,255,.10); margin:4px 0;"></div>
-        <div style="font-size:14px; font-weight:800; letter-spacing:.2px;">Equipment list</div>
+        <div style="font-size:14px; font-weight:800; letter-spacing:.2px;">Equipment list (exact names + quantities required)</div>
 
-        <div style="
-          border:1px solid rgba(255,255,255,.12);
-          background:rgba(10,11,16,.55);
-          border-radius:18px;
-          padding:14px;
-        ">
+        <div style="border:1px solid rgba(255,255,255,.12); background:rgba(10,11,16,.55); border-radius:18px; padding:14px;">
           <div style="display:grid; grid-template-columns:1fr; gap:14px;">
-            <div style="display:grid; grid-template-columns:1fr; gap:8px;">
+            <div style="display:grid; gap:8px;">
               <label style="font-size:13px; color:rgba(233,233,238,.80);">Equipment List Link (Google Sheet link)</label>
               <input name="equipment_list_link" placeholder="https://docs.google.com/..."
-                     style="
-                       width:100%; padding:12px 12px;
-                       border-radius:12px;
-                       border:1px solid rgba(255,255,255,.14);
-                       background:rgba(15,16,21,.85);
-                       color:#e9e9ee;
-                       outline:none;
-                     " />
+                     style="width:100%; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.14); background:rgba(15,16,21,.85); color:#e9e9ee; outline:none;" />
               <div style="font-size:12.5px; color:rgba(233,233,238,.62);">
                 Tip: Set sharing to “Anyone with the link can view”.
               </div>
             </div>
 
-            <div style="display:grid; grid-template-columns:1fr; gap:8px;">
+            <div style="display:grid; gap:8px;">
               <label style="font-size:13px; color:rgba(233,233,238,.80);">Or Upload Equipment List (Excel, PDF, or Image)</label>
-              <input
-                type="file"
-                name="equipment_file"
-                accept=".xlsx,.xls,.pdf,.jpg,.jpeg,.png"
-                style="
-                  width:100%;
-                  padding:10px 12px;
-                  border-radius:12px;
-                  border:1px dashed rgba(255,255,255,.22);
-                  background:rgba(15,16,21,.55);
-                  color:rgba(233,233,238,.80);
-                "
-              />
+              <input type="file" name="equipment_file" accept=".xlsx,.xls,.pdf,.jpg,.jpeg,.png"
+                     style="width:100%; padding:10px 12px; border-radius:12px; border:1px dashed rgba(255,255,255,.22); background:rgba(15,16,21,.55); color:rgba(233,233,238,.80);" />
               <div style="font-size:12.5px; color:rgba(233,233,238,.62);">
                 Include machine names and quantities. (Brand/model optional.)
+              </div>
+            </div>
+
+            <div style="display:grid; gap:8px;">
+              <label style="font-size:13px; color:rgba(233,233,238,.80);">If you don't have a file/link yet, paste your equipment list here</label>
+              <textarea name="equipment_list_paste"
+                        rows="8"
+                        placeholder="Example:&#10;Shoulder Press — 2&#10;Chest Press — 2&#10;Leg Press — 1&#10;Treadmill — 8&#10;Stair Climber — 3"
+                        style="width:100%; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.14); background:rgba(15,16,21,.85); color:#e9e9ee; outline:none; resize:vertical;"></textarea>
+              <div style="font-size:12.5px; color:rgba(233,233,238,.62);">
+                This must include <b>exact equipment names</b> and <b>quantities</b>.
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Section: Term -->
+        <!-- Term -->
         <div style="height:1px; background:rgba(255,255,255,.10); margin:4px 0;"></div>
         <div style="font-size:14px; font-weight:800; letter-spacing:.2px;">Subscription term</div>
 
-        <div style="display:grid; grid-template-columns:1fr; gap:8px;">
+        <div style="display:grid; gap:8px;">
           <label style="font-size:13px; color:rgba(233,233,238,.80);">Term Commitment</label>
           <select name="term" required
-                  style="
-                    width:100%; padding:12px 12px;
-                    border-radius:12px;
-                    border:1px solid rgba(255,255,255,.14);
-                    background:rgba(15,16,21,.85);
-                    color:#e9e9ee;
-                    outline:none;
-                  ">
+                  style="width:100%; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.14); background:rgba(15,16,21,.85); color:#e9e9ee; outline:none;">
             <option value="">Select one</option>
             <option value="month-to-month">Month-to-Month</option>
             <option value="3-months">3 Months</option>
@@ -253,13 +188,18 @@
           </select>
         </div>
 
+        <!-- Agreement acceptance date (signature date equivalent) -->
+        <div style="display:grid; grid-template-columns:1fr; gap:8px; margin-top:6px;">
+          <label style="font-size:13px; color:rgba(233,233,238,.80);">Agreement Acceptance Date</label>
+          <input type="date" name="agreement_date" required
+                 style="width:100%; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.14); background:rgba(15,16,21,.85); color:#e9e9ee; outline:none;" />
+          <div style="font-size:12.5px; color:rgba(233,233,238,.62);">
+            This serves as the signature date for electronic acceptance.
+          </div>
+        </div>
+
         <!-- Acceptance -->
-        <div style="
-          border:1px solid rgba(255,255,255,.12);
-          background:rgba(10,11,16,.55);
-          padding:14px;
-          border-radius:18px;
-        ">
+        <div style="border:1px solid rgba(255,255,255,.12); background:rgba(10,11,16,.55); padding:14px; border-radius:18px;">
           <label style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
             <input type="checkbox" name="agreement_acceptance" required style="margin-top:3px;" />
             <span style="font-size:13px; color:rgba(233,233,238,.82);">
@@ -269,7 +209,7 @@
                 ScanLiftLog Service Agreement
               </a>.
               <span style="display:block; margin-top:6px; color:rgba(233,233,238,.62); font-size:12.5px;">
-                Your acceptance is recorded with a timestamp.
+                Acceptance is recorded with a timestamp for audit purposes.
               </span>
             </span>
           </label>
@@ -302,10 +242,14 @@
     </div>
   </div>
 
-  <!-- Auto timestamp for acceptance record -->
   <script>
-    // ISO timestamp is best for audit trails and unambiguous logging
-    document.getElementById("submission_date").value = new Date().toISOString();
+    // Audit trail timestamp (unambiguous)
+    document.getElementById("submission_timestamp").value = new Date().toISOString();
+
+    // Pre-fill the agreement acceptance date to today (editable)
+    const today = new Date().toISOString().split("T")[0];
+    const agreementDateInput = document.querySelector('input[name="agreement_date"]');
+    if (agreementDateInput && !agreementDateInput.value) agreementDateInput.value = today;
   </script>
 </body>
 </html>
