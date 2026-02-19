@@ -4,95 +4,308 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ScanLiftLog — Sign Up</title>
+  <meta name="description" content="ScanLiftLog gym onboarding signup form." />
 </head>
-<body style="font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial; margin:0; padding:0; background:#fff; color:#111;">
-  <div style="max-width:760px; margin:0 auto; padding:40px 20px;">
-    <h1 style="margin:0 0 10px;">Gym Signup</h1>
-    <p style="margin:0 0 24px; color:#444;">
-      Fill this out to start onboarding. We’ll generate and ship your gym’s QR labels based on your equipment list.
-    </p>
 
-    <!-- IMPORTANT: Replace YOUR_FORMSPREE_ID in Part 2 -->
-    <form action="https://formspree.io/f/mpqqwbjw" method="POST" enctype="multipart/form-data" style="display:grid; gap:14px;">
+<body style="margin:0; background:#0b0c10; color:#e9e9ee; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; line-height:1.35;">
+  <!-- Top glow / background -->
+  <div style="
+    position:fixed; inset:-200px; z-index:-1;
+    background:
+      radial-gradient(900px 500px at 20% 10%, rgba(220,38,38,.18), transparent 60%),
+      radial-gradient(900px 500px at 80% 20%, rgba(139,92,246,.18), transparent 60%),
+      radial-gradient(900px 500px at 50% 80%, rgba(34,197,94,.10), transparent 60%),
+      linear-gradient(180deg, #0b0c10 0%, #07080b 100%);
+    filter:saturate(110%);
+  "></div>
+
+  <div style="max-width:900px; margin:0 auto; padding:46px 20px 70px;">
+    <!-- Header -->
+    <div style="
+      display:flex; align-items:flex-start; justify-content:space-between; gap:16px;
+      margin-bottom:18px;
+    ">
       <div>
-        <label>Gym Name</label><br />
-        <input name="gym_name" required style="width:100%; padding:10px;" />
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+          <div style="
+            width:44px; height:44px; border-radius:14px;
+            background:linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+            border:1px solid rgba(255,255,255,.14);
+            box-shadow: 0 12px 40px rgba(0,0,0,.35);
+            display:flex; align-items:center; justify-content:center;
+            font-weight:800; letter-spacing:.5px;
+          ">SL</div>
+          <div>
+            <div style="font-size:14px; color:rgba(233,233,238,.75); margin-bottom:2px;">ScanLiftLog</div>
+            <div style="font-size:22px; font-weight:800; letter-spacing:.2px;">Gym Signup</div>
+          </div>
+        </div>
+
+        <p style="margin:0; max-width:640px; color:rgba(233,233,238,.72); font-size:14px;">
+          Fill this out to start onboarding. We’ll generate and ship your gym’s QR labels based on your equipment list.
+        </p>
       </div>
 
-      <div>
-        <label>Gym Location / Address (optional)</label><br />
-        <input name="gym_location" style="width:100%; padding:10px;" />
-      </div>
-
-      <div>
-        <label>Primary Contact Name</label><br />
-        <input name="contact_name" required style="width:100%; padding:10px;" />
-      </div>
-
-      <div>
-        <label>Email</label><br />
-        <input name="email" type="email" required style="width:100%; padding:10px;" />
-      </div>
-
-      <div>
-        <label>Phone</label><br />
-        <input name="phone" required style="width:100%; padding:10px;" />
-      </div>
-
-      <div>
-        <label>Estimated Machine Count</label><br />
-        <input name="machine_count" required style="width:100%; padding:10px;" />
-      </div>
-
-      <div>
-        <label>Equipment List Link (Google Sheet link)</label><br />
-        <input name="equipment_list_link" placeholder="https://docs.google.com/..." style="width:100%; padding:10px;" />
-        <div style="font-size:13px; color:#555; margin-top:6px;">
-          Tip: Set sharing to “Anyone with the link can view”.
+      <div style="
+        border:1px solid rgba(255,255,255,.12);
+        background:rgba(18,19,24,.62);
+        backdrop-filter: blur(10px);
+        border-radius:16px;
+        padding:12px 14px;
+        min-width:240px;
+        box-shadow: 0 18px 60px rgba(0,0,0,.35);
+      ">
+        <div style="font-weight:700; font-size:13px; margin-bottom:6px;">What you’ll need</div>
+        <div style="font-size:13px; color:rgba(233,233,238,.72);">
+          • Gym name & contact<br/>
+          • Equipment list + quantities<br/>
+          • Term commitment
         </div>
       </div>
-<div>
-  <label>Or Upload Equipment List (Excel, PDF, or Image)</label><br />
-  <input
-    type="file"
-    name="equipment_file"
-    accept=".xlsx,.xls,.pdf,.jpg,.jpeg,.png"
-    style="width:100%; padding:6px;"
-  />
-</div>
+    </div>
 
-      <div>
-        <label>Term Commitment</label><br />
-        <select name="term" required style="width:100%; padding:10px;">
-          <option value="">Select one</option>
-          <option value="month-to-month">Month-to-Month</option>
-          <option value="3-months">3 Months</option>
-          <option value="6-months">6 Months</option>
-          <option value="12-months">12 Months</option>
-        </select>
-      </div>
+    <!-- Main card -->
+    <div style="
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(18,19,24,.72);
+      backdrop-filter: blur(12px);
+      border-radius:22px;
+      padding:22px;
+      box-shadow: 0 22px 80px rgba(0,0,0,.45);
+    ">
+      <!-- IMPORTANT: Formspree endpoint -->
+      <form action="https://formspree.io/f/mpqqwbjw"
+            method="POST"
+            enctype="multipart/form-data"
+            style="display:grid; gap:16px;">
 
-      <div style="border:1px solid #ddd; padding:12px; border-radius:8px;">
-        <label style="display:flex; gap:10px; align-items:flex-start;">
-          <input type="checkbox" name="agreement_acceptance" required />
-          <span>
-            I have read and agree to the
-            <a href="/agreement/scanliftlog-service-agreement.pdf" target="_blank" rel="noopener">
-              ScanLiftLog Service Agreement
-            </a>.
-          </span>
-        </label>
-      </div>
+        <!-- Auto-captured submission timestamp -->
+        <input type="hidden" name="submission_date" id="submission_date">
 
-      <button type="submit" style="padding:14px 18px; background:#000; color:#fff; border:none; border-radius:8px; font-weight:600; cursor:pointer;">
-        Submit Signup
-      </button>
+        <!-- Section: Gym Details -->
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:2px;">
+          <div style="font-size:14px; font-weight:800; letter-spacing:.2px;">Gym details</div>
+          <div style="font-size:12px; color:rgba(233,233,238,.60);">All fields required unless marked optional</div>
+        </div>
 
-      <p style="font-size:13px; color:#666; margin:0;">
-        After submission, A ScanLiftLog team member will reach out to confirm details and provide next steps. 
-      </p>
-    </form>
+        <div style="display:grid; grid-template-columns:1fr; gap:14px;">
+          <div style="display:grid; grid-template-columns:1fr; gap:8px;">
+            <label style="font-size:13px; color:rgba(233,233,238,.80);">Gym Name</label>
+            <input name="gym_name" required
+                   autocomplete="organization"
+                   style="
+                     width:100%; padding:12px 12px;
+                     border-radius:12px;
+                     border:1px solid rgba(255,255,255,.14);
+                     background:rgba(15,16,21,.85);
+                     color:#e9e9ee;
+                     outline:none;
+                   " />
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr; gap:8px;">
+            <label style="font-size:13px; color:rgba(233,233,238,.80);">Gym Location / Address (optional)</label>
+            <input name="gym_location"
+                   autocomplete="street-address"
+                   style="
+                     width:100%; padding:12px 12px;
+                     border-radius:12px;
+                     border:1px solid rgba(255,255,255,.14);
+                     background:rgba(15,16,21,.85);
+                     color:#e9e9ee;
+                     outline:none;
+                   " />
+          </div>
+        </div>
+
+        <!-- Section: Contact -->
+        <div style="height:1px; background:rgba(255,255,255,.10); margin:4px 0;"></div>
+        <div style="font-size:14px; font-weight:800; letter-spacing:.2px;">Primary contact</div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+          <div style="display:grid; grid-template-columns:1fr; gap:8px;">
+            <label style="font-size:13px; color:rgba(233,233,238,.80);">Primary Contact Name</label>
+            <input name="contact_name" required
+                   autocomplete="name"
+                   style="
+                     width:100%; padding:12px 12px;
+                     border-radius:12px;
+                     border:1px solid rgba(255,255,255,.14);
+                     background:rgba(15,16,21,.85);
+                     color:#e9e9ee;
+                     outline:none;
+                   " />
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr; gap:8px;">
+            <label style="font-size:13px; color:rgba(233,233,238,.80);">Phone</label>
+            <input name="phone" required
+                   autocomplete="tel"
+                   style="
+                     width:100%; padding:12px 12px;
+                     border-radius:12px;
+                     border:1px solid rgba(255,255,255,.14);
+                     background:rgba(15,16,21,.85);
+                     color:#e9e9ee;
+                     outline:none;
+                   " />
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr; gap:8px;">
+            <label style="font-size:13px; color:rgba(233,233,238,.80);">Email</label>
+            <input name="email" type="email" required
+                   autocomplete="email"
+                   style="
+                     width:100%; padding:12px 12px;
+                     border-radius:12px;
+                     border:1px solid rgba(255,255,255,.14);
+                     background:rgba(15,16,21,.85);
+                     color:#e9e9ee;
+                     outline:none;
+                   " />
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr; gap:8px;">
+            <label style="font-size:13px; color:rgba(233,233,238,.80);">Estimated Machine Count</label>
+            <input name="machine_count" required
+                   inputmode="numeric"
+                   placeholder="e.g., 120"
+                   style="
+                     width:100%; padding:12px 12px;
+                     border-radius:12px;
+                     border:1px solid rgba(255,255,255,.14);
+                     background:rgba(15,16,21,.85);
+                     color:#e9e9ee;
+                     outline:none;
+                   " />
+          </div>
+        </div>
+
+        <!-- Section: Equipment List -->
+        <div style="height:1px; background:rgba(255,255,255,.10); margin:4px 0;"></div>
+        <div style="font-size:14px; font-weight:800; letter-spacing:.2px;">Equipment list</div>
+
+        <div style="
+          border:1px solid rgba(255,255,255,.12);
+          background:rgba(10,11,16,.55);
+          border-radius:18px;
+          padding:14px;
+        ">
+          <div style="display:grid; grid-template-columns:1fr; gap:14px;">
+            <div style="display:grid; grid-template-columns:1fr; gap:8px;">
+              <label style="font-size:13px; color:rgba(233,233,238,.80);">Equipment List Link (Google Sheet link)</label>
+              <input name="equipment_list_link" placeholder="https://docs.google.com/..."
+                     style="
+                       width:100%; padding:12px 12px;
+                       border-radius:12px;
+                       border:1px solid rgba(255,255,255,.14);
+                       background:rgba(15,16,21,.85);
+                       color:#e9e9ee;
+                       outline:none;
+                     " />
+              <div style="font-size:12.5px; color:rgba(233,233,238,.62);">
+                Tip: Set sharing to “Anyone with the link can view”.
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr; gap:8px;">
+              <label style="font-size:13px; color:rgba(233,233,238,.80);">Or Upload Equipment List (Excel, PDF, or Image)</label>
+              <input
+                type="file"
+                name="equipment_file"
+                accept=".xlsx,.xls,.pdf,.jpg,.jpeg,.png"
+                style="
+                  width:100%;
+                  padding:10px 12px;
+                  border-radius:12px;
+                  border:1px dashed rgba(255,255,255,.22);
+                  background:rgba(15,16,21,.55);
+                  color:rgba(233,233,238,.80);
+                "
+              />
+              <div style="font-size:12.5px; color:rgba(233,233,238,.62);">
+                Include machine names and quantities. (Brand/model optional.)
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Term -->
+        <div style="height:1px; background:rgba(255,255,255,.10); margin:4px 0;"></div>
+        <div style="font-size:14px; font-weight:800; letter-spacing:.2px;">Subscription term</div>
+
+        <div style="display:grid; grid-template-columns:1fr; gap:8px;">
+          <label style="font-size:13px; color:rgba(233,233,238,.80);">Term Commitment</label>
+          <select name="term" required
+                  style="
+                    width:100%; padding:12px 12px;
+                    border-radius:12px;
+                    border:1px solid rgba(255,255,255,.14);
+                    background:rgba(15,16,21,.85);
+                    color:#e9e9ee;
+                    outline:none;
+                  ">
+            <option value="">Select one</option>
+            <option value="month-to-month">Month-to-Month</option>
+            <option value="3-months">3 Months</option>
+            <option value="6-months">6 Months</option>
+            <option value="12-months">12 Months</option>
+          </select>
+        </div>
+
+        <!-- Acceptance -->
+        <div style="
+          border:1px solid rgba(255,255,255,.12);
+          background:rgba(10,11,16,.55);
+          padding:14px;
+          border-radius:18px;
+        ">
+          <label style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
+            <input type="checkbox" name="agreement_acceptance" required style="margin-top:3px;" />
+            <span style="font-size:13px; color:rgba(233,233,238,.82);">
+              I have read and agree to the
+              <a href="/agreement/scanliftlog-service-agreement.pdf" target="_blank" rel="noopener"
+                 style="color:#ff4d4d; text-decoration:none; font-weight:700;">
+                ScanLiftLog Service Agreement
+              </a>.
+              <span style="display:block; margin-top:6px; color:rgba(233,233,238,.62); font-size:12.5px;">
+                Your acceptance is recorded with a timestamp.
+              </span>
+            </span>
+          </label>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit"
+                style="
+                  padding:14px 18px;
+                  background:linear-gradient(135deg, rgba(255,77,77,1), rgba(139,92,246,1));
+                  color:#0b0c10;
+                  border:none;
+                  border-radius:14px;
+                  font-weight:900;
+                  letter-spacing:.2px;
+                  cursor:pointer;
+                  box-shadow: 0 18px 55px rgba(139,92,246,.20), 0 18px 55px rgba(255,77,77,.12);
+                ">
+          Submit Signup
+        </button>
+
+        <div style="font-size:12.5px; color:rgba(233,233,238,.62); margin:0;">
+          After submission, a ScanLiftLog team member will reach out to confirm details and provide next steps.
+        </div>
+
+        <div style="font-size:12px; color:rgba(233,233,238,.45); margin-top:-6px;">
+          For support: <a href="mailto:info@scanliftlog.com" style="color:rgba(233,233,238,.78); text-decoration:none; font-weight:700;">info@scanliftlog.com</a>
+        </div>
+      </form>
+    </div>
   </div>
+
+  <!-- Auto timestamp for acceptance record -->
+  <script>
+    // ISO timestamp is best for audit trails and unambiguous logging
+    document.getElementById("submission_date").value = new Date().toISOString();
+  </script>
 </body>
 </html>
-
