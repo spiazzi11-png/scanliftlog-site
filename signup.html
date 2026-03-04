@@ -4,95 +4,450 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ScanLiftLog — Sign Up</title>
+  <meta name="description" content="ScanLiftLog gym onboarding signup form." />
+
+  <style>
+    :root{
+      --bg:#0b0c10;
+      --bg2:#07080b;
+      --panel:rgba(18,19,24,.78);
+      --panel2:rgba(10,11,16,.60);
+      --text:#e9e9ee;
+      --muted:rgba(233,233,238,.68);
+      --muted2:rgba(233,233,238,.52);
+      --line:rgba(255,255,255,.12);
+      --line2:rgba(255,255,255,.10);
+      --danger:#ff4d4d;
+      --accent:#8b5cf6;
+      --radius:22px;
+      --radius2:14px;
+      --shadow:0 22px 80px rgba(0,0,0,.45);
+      --shadow2:0 18px 60px rgba(0,0,0,.35);
+      --inputbg:rgba(15,16,21,.88);
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      line-height:1.35;
+    }
+
+    .bg{
+      position:fixed;
+      inset:-240px;
+      z-index:-1;
+      background:
+        radial-gradient(900px 520px at 18% 12%, rgba(220,38,38,.18), transparent 60%),
+        radial-gradient(900px 520px at 82% 18%, rgba(139,92,246,.18), transparent 60%),
+        radial-gradient(900px 520px at 50% 84%, rgba(34,197,94,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      filter:saturate(110%);
+    }
+
+    .wrap{
+      max-width:980px;
+      margin:0 auto;
+      padding:46px 20px 70px;
+    }
+
+    /* Header */
+    .top{
+      display:grid;
+      grid-template-columns: 1fr 320px;
+      gap:16px;
+      align-items:start;
+      margin-bottom:18px;
+    }
+    @media (max-width: 920px){
+      .top{ grid-template-columns: 1fr; }
+    }
+
+    .brandRow{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:10px;
+    }
+
+    .logo{
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+      box-shadow:0 12px 40px rgba(0,0,0,.35);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      flex:0 0 auto;
+    }
+    .logo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    /* If you DON'T have a logo file yet, remove <img> and use this text fallback */
+    .logoFallback{
+      font-weight:800;
+      letter-spacing:.5px;
+      font-size:14px;
+      color:rgba(233,233,238,.92);
+    }
+
+    .brandName{ font-size:14px; color:rgba(233,233,238,.75); margin:0; }
+    .pageTitle{ font-size:22px; font-weight:800; letter-spacing:.2px; margin:2px 0 0; }
+
+    .subtitle{
+      margin:0;
+      max-width:720px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .needCard{
+      border:1px solid var(--line);
+      background:rgba(18,19,24,.62);
+      backdrop-filter: blur(10px);
+      border-radius:16px;
+      padding:12px 14px;
+      box-shadow:var(--shadow2);
+    }
+    .needTitle{ font-weight:800; font-size:13px; margin:0 0 6px; }
+    .needBody{ font-size:13px; color:var(--muted); margin:0; }
+
+    /* Main card */
+    .card{
+      border:1px solid var(--line);
+      background:var(--panel);
+      backdrop-filter: blur(12px);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+
+    form{ display:grid; gap:16px; }
+
+    .sectionHeaderRow{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:2px;
+    }
+    .sectionTitle{
+      font-size:14px;
+      font-weight:900;
+      letter-spacing:.2px;
+      margin:0;
+    }
+    .sectionHint{
+      font-size:12px;
+      color:var(--muted2);
+      margin:0;
+    }
+    .divider{
+      height:1px;
+      background:var(--line2);
+      margin:4px 0;
+    }
+
+    label{
+      font-size:13px;
+      color:rgba(233,233,238,.82);
+    }
+
+    input, select, textarea{
+      width:100%;
+      padding:12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.14);
+      background:var(--inputbg);
+      color:var(--text);
+      outline:none;
+    }
+    textarea{ resize:vertical; }
+
+    .grid2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+    @media (max-width: 760px){
+      .grid2{ grid-template-columns:1fr; }
+    }
+
+    .subcard{
+      border:1px solid var(--line);
+      background:var(--panel2);
+      border-radius:18px;
+      padding:14px;
+    }
+    .smallNote{
+      font-size:12.5px;
+      color:var(--muted2);
+      margin-top:6px;
+    }
+
+    .fileInput{
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px dashed rgba(255,255,255,.22);
+      background:rgba(15,16,21,.55);
+      color:rgba(233,233,238,.80);
+    }
+
+    .acceptBox{
+      border:1px solid var(--line);
+      background:var(--panel2);
+      padding:14px;
+      border-radius:18px;
+    }
+    .acceptLabel{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      cursor:pointer;
+    }
+    .acceptLabel input{ width:auto; margin-top:3px; }
+    .acceptLink{
+      color:var(--danger);
+      text-decoration:none;
+      font-weight:800;
+    }
+
+    .btn{
+      padding:14px 18px;
+      background:linear-gradient(135deg, rgba(255,77,77,1), rgba(139,92,246,1));
+      color:#0b0c10;
+      border:none;
+      border-radius:14px;
+      font-weight:950;
+      letter-spacing:.2px;
+      cursor:pointer;
+      box-shadow: 0 18px 55px rgba(139,92,246,.20), 0 18px 55px rgba(255,77,77,.12);
+    }
+
+    .footerText{
+      font-size:12.5px;
+      color:var(--muted2);
+      margin:0;
+    }
+    .support{
+      font-size:12px;
+      color:rgba(233,233,238,.45);
+      margin-top:-6px;
+    }
+    .support a{
+      color:rgba(233,233,238,.78);
+      text-decoration:none;
+      font-weight:800;
+    }
+
+    /* Make the "date" field consistent in dark mode */
+    input[type="date"]{
+      color-scheme: dark;
+    }
+  </style>
 </head>
-<body style="font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial; margin:0; padding:0; background:#fff; color:#111;">
-  <div style="max-width:760px; margin:0 auto; padding:40px 20px;">
-    <h1 style="margin:0 0 10px;">Gym Signup</h1>
-    <p style="margin:0 0 24px; color:#444;">
-      Fill this out to start onboarding. We’ll generate and ship your gym’s QR labels based on your equipment list.
-    </p>
 
-    <!-- IMPORTANT: Replace YOUR_FORMSPREE_ID in Part 2 -->
-    <form action="https://formspree.io/f/mpqqwbjw" method="POST" enctype="multipart/form-data" style="display:grid; gap:14px;">
-      <div>
-        <label>Gym Name</label><br />
-        <input name="gym_name" required style="width:100%; padding:10px;" />
-      </div>
+<body>
+  <div class="bg"></div>
 
+  <div class="wrap">
+    <div class="top">
       <div>
-        <label>Gym Location / Address (optional)</label><br />
-        <input name="gym_location" style="width:100%; padding:10px;" />
-      </div>
+        <div class="brandRow">
+          <!-- LOGO: put your logo at /assets/logo.png (recommended). -->
+          <div class="logo" aria-label="ScanLiftLog logo">
+            <img src="/assets/logo.png" alt="ScanLiftLog" onerror="this.remove(); this.parentElement.innerHTML='<div class=&quot;logoFallback&quot;>SLL</div>';">
+          </div>
 
-      <div>
-        <label>Primary Contact Name</label><br />
-        <input name="contact_name" required style="width:100%; padding:10px;" />
-      </div>
-
-      <div>
-        <label>Email</label><br />
-        <input name="email" type="email" required style="width:100%; padding:10px;" />
-      </div>
-
-      <div>
-        <label>Phone</label><br />
-        <input name="phone" required style="width:100%; padding:10px;" />
-      </div>
-
-      <div>
-        <label>Estimated Machine Count</label><br />
-        <input name="machine_count" required style="width:100%; padding:10px;" />
-      </div>
-
-      <div>
-        <label>Equipment List Link (Google Sheet link)</label><br />
-        <input name="equipment_list_link" placeholder="https://docs.google.com/..." style="width:100%; padding:10px;" />
-        <div style="font-size:13px; color:#555; margin-top:6px;">
-          Tip: Set sharing to “Anyone with the link can view”.
+          <div>
+            <p class="brandName">ScanLiftLog</p>
+            <p class="pageTitle">Gym Signup</p>
+          </div>
         </div>
-      </div>
-<div>
-  <label>Or Upload Equipment List (Excel, PDF, or Image)</label><br />
-  <input
-    type="file"
-    name="equipment_file"
-    accept=".xlsx,.xls,.pdf,.jpg,.jpeg,.png"
-    style="width:100%; padding:6px;"
-  />
-</div>
 
-      <div>
-        <label>Term Commitment</label><br />
-        <select name="term" required style="width:100%; padding:10px;">
-          <option value="">Select one</option>
-          <option value="30-day-free-trial">30 Day Free Trial</option>
-          <option value="month-to-month">Month-to-Month</option>
-          <option value="3-months">3 Months</option>
-          <option value="6-months">6 Months</option>
-          <option value="12-months">12 Months</option>
-        </select>
+        <p class="subtitle">
+          Fill this out to start onboarding. We'll generate and ship your gym's QR labels based on your equipment list with exact quantities.
+        </p>
       </div>
 
-      <div style="border:1px solid #ddd; padding:12px; border-radius:8px;">
-        <label style="display:flex; gap:10px; align-items:flex-start;">
-          <input type="checkbox" name="agreement_acceptance" required />
-          <span>
-            I have read and agree to the
-            <a href="/agreement/scanliftlog-service-agreement.pdf" target="_blank" rel="noopener">
-              ScanLiftLog Service Agreement
-            </a>.
-          </span>
-        </label>
+      <div class="needCard">
+        <p class="needTitle">What you'll need</p>
+        <p class="needBody">
+          • Gym name & contact<br/>
+          • Equipment list + quantities<br/>
+          • Term commitment<br/>
+        </p>
       </div>
+    </div>
 
-      <button type="submit" style="padding:14px 18px; background:#000; color:#fff; border:none; border-radius:8px; font-weight:600; cursor:pointer;">
-        Submit Signup
-      </button>
+    <div class="card">
+      <form id="signupForm"
+            action="https://formspree.io/f/mpqqwbjw"
+            method="POST"
+            enctype="multipart/form-data">
 
-      <p style="font-size:13px; color:#666; margin:0;">
-        After submission, A ScanLiftLog team member will reach out to confirm details and provide next steps. 
-      </p>
-    </form>
+        <!-- Audit trail -->
+        <input type="hidden" name="submission_timestamp" id="submission_timestamp">
+
+        <!-- Gym Details -->
+        <div class="sectionHeaderRow">
+          <p class="sectionTitle">Gym details</p>
+          <p class="sectionHint">All fields required unless marked optional</p>
+        </div>
+
+        <div style="display:grid; gap:14px;">
+          <div style="display:grid; gap:8px;">
+            <label>Gym Name</label>
+            <input name="gym_name" required autocomplete="organization" />
+          </div>
+
+          <div style="display:grid; gap:8px;">
+            <label>Gym Location / Address </label>
+            <input name="gym_location" autocomplete="street-address" />
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Contact -->
+        <p class="sectionTitle">Primary contact</p>
+
+        <div class="grid2">
+          <div style="display:grid; gap:8px;">
+            <label>Primary Contact Name</label>
+            <input name="contact_name" required autocomplete="name" />
+          </div>
+
+          <div style="display:grid; gap:8px;">
+            <label>Phone</label>
+            <input name="phone" required autocomplete="tel" />
+          </div>
+
+          <div style="display:grid; gap:8px;">
+            <label>Email</label>
+            <input name="email" type="email" required autocomplete="email" />
+          </div>
+
+          <div class="subcard" style="display:flex; align-items:center;">
+            <div style="font-size:12.5px; color:var(--muted);">
+              Tip: Provide a Google Sheet link, upload a file, or paste your equipment list below.
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Equipment List -->
+        <p class="sectionTitle">Equipment list (exact names + quantities required)</p>
+
+        <div class="subcard">
+          <div style="display:grid; gap:14px;">
+            <div style="display:grid; gap:8px;">
+              <label>Equipment List Link (Google Sheet link)</label>
+              <input name="equipment_list_link" placeholder="https://docs.google.com/..." />
+              <div class="smallNote">Tip: Set sharing to "Anyone with the link can view".</div>
+            </div>
+
+            <div style="display:grid; gap:8px;">
+              <label>Or Upload Equipment List (Excel, PDF, or Image)</label>
+              <input class="fileInput"
+                     type="file"
+                     name="equipment_file"
+                     accept=".xlsx,.xls,.pdf,.jpg,.jpeg,.png" />
+              <div class="smallNote">Include machine names and quantities. (Brand/model optional.)</div>
+            </div>
+
+            <div style="display:grid; gap:8px;">
+              <label>If you don't have a file/link yet, paste your equipment list here</label>
+              <textarea name="equipment_list_paste" rows="8"
+                placeholder="Example:
+Shoulder Press — 2
+Chest Press — 2
+Leg Press — 1
+Treadmill — 8
+Stair Climber — 3"></textarea>
+              <div class="smallNote">This must include <b>exact equipment names</b> and <b>quantities</b>.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Term -->
+        <p class="sectionTitle">Subscription term</p>
+        <div style="display:grid; gap:8px;">
+          <label>Term Commitment</label>
+          <select name="term" required>
+            <option value="">Select one</option>
+            <option value="30-day-free-trial">30 Day Free Trial</option>
+            <option value="month-to-month">Month-to-Month</option>
+            <option value="3-months">3 Months</option>
+            <option value="6-months">6 Months</option>
+            <option value="12-months">12 Months</option>
+          </select>
+        </div>
+
+        <!-- Agreement acceptance date -->
+        <div style="display:grid; gap:8px; margin-top:6px;">
+          <label>Agreement Acceptance Date</label>
+          <input type="date" name="agreement_date" id="agreement_date" required />
+          <div class="smallNote">This serves as the signature date for electronic acceptance.</div>
+        </div>
+
+        <!-- Acceptance -->
+        <div class="acceptBox">
+          <label class="acceptLabel">
+            <input type="checkbox" name="agreement_acceptance" id="agreement_acceptance" required />
+            <span style="font-size:13px; color:rgba(233,233,238,.84);">
+              I have read and agree to the
+              <a class="acceptLink" href="/agreement/scanliftlog-service-agreement.pdf" target="_blank" rel="noopener">
+                ScanLiftLog Service Agreement
+              </a>.
+              <span style="display:block; margin-top:6px; color:var(--muted2); font-size:12.5px;">
+                Acceptance is recorded with a timestamp for audit purposes.
+              </span>
+            </span>
+          </label>
+        </div>
+
+        <button class="btn" type="submit">Submit Signup</button>
+
+        <p class="footerText">
+          After submission, a ScanLiftLog team member will reach out to confirm details and provide next steps.
+        </p>
+        <p class="support">
+          For support: <a href="mailto:info@scanliftlog.com">info@scanliftlog.com</a>
+        </p>
+      </form>
+    </div>
   </div>
+
+  <script>
+    // Audit trail timestamp (unambiguous)
+    document.getElementById("submission_timestamp").value = new Date().toISOString();
+
+    // Pre-fill the agreement acceptance date to today (still editable)
+    const today = new Date().toISOString().split("T")[0];
+    const agreementDateInput = document.getElementById("agreement_date");
+    if (agreementDateInput && !agreementDateInput.value) agreementDateInput.value = today;
+
+    // Extra guard: block submit unless checkbox checked (in addition to required)
+    document.getElementById("signupForm").addEventListener("submit", function(e){
+      const cb = document.getElementById("agreement_acceptance");
+      if (!cb.checked){
+        e.preventDefault();
+        alert("Please check the box to agree to the ScanLiftLog Service Agreement before submitting.");
+        cb.focus();
+      }
+    });
+  </script>
 </body>
 </html>
