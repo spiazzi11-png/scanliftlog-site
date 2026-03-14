@@ -52,11 +52,31 @@
       font-weight:800; letter-spacing:.2px;
     }
     .logo{
-      width:36px;height:36px;border-radius:12px;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,.20), transparent 55%),
-        linear-gradient(135deg, rgba(139,92,246,.95), rgba(34,197,94,.85));
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      object-fit:cover;
+      display:block;
       box-shadow: var(--shadow);
+      border:1px solid rgba(255,255,255,.10);
+      background:#111;
+    }
+
+    /* TOP BANNER */
+    .top-banner{
+      padding:18px 0 8px;
+    }
+    .top-banner-wrap{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      background: rgba(18,19,24,.66);
+    }
+    .top-banner-wrap img{
+      width:100%;
+      height:auto;
+      display:block;
     }
 
     /* Desktop links */
@@ -146,7 +166,7 @@
     }
     .btn.primary:hover{filter: brightness(1.05);}
 
-    .hero{padding:54px 0 18px;}
+    .hero{padding:30px 0 18px;}
     .hero-grid{
       display:grid;
       grid-template-columns: 1.15fr .85fr;
@@ -244,13 +264,13 @@
        =========================== */
     @media (min-width: 981px){
       .hero-card.hero-copy .inner{
-        min-height: 520px;       /* adjust 480–620 if desired */
+        min-height: 520px;
         display:flex;
         flex-direction:column;
-        justify-content:center;  /* vertical centering */
+        justify-content:center;
       }
       .hero-card.hero-media{
-        justify-content:flex-start; /* remove top whitespace on desktop */
+        justify-content:flex-start;
         background:
           radial-gradient(220px 200px at 20% 0%, rgba(139,92,246,.18), transparent 60%),
           radial-gradient(240px 220px at 85% 15%, rgba(34,197,94,.14), transparent 60%),
@@ -307,7 +327,7 @@
       }
     }
     @media (min-width: 1200px){
-      .hero{ padding: 70px 0 26px; }
+      .hero{ padding: 42px 0 26px; }
     }
 
     section{padding:30px 0}
@@ -501,11 +521,17 @@
     @media (max-width: 720px){
       .container{padding:0 14px}
 
-      /* Replace messy wrapped nav with hamburger */
       .nav-links{display:none}
       .nav-toggle{display:inline-flex}
 
-      .hero{padding:34px 0 10px;}
+      .top-banner{
+        padding:14px 0 4px;
+      }
+      .top-banner-wrap{
+        border-radius:18px;
+      }
+
+      .hero{padding:26px 0 10px;}
       .hero-card .inner{padding:18px;}
       .kicker{font-size:12px;padding:7px 10px}
       .sub{font-size:16px}
@@ -515,10 +541,8 @@
       .section-title h2{font-size:24px}
       section{padding:22px 0}
 
-      /* Make cards feel less cramped */
       .card, .step, .price, .faq{padding:16px;border-radius:16px}
 
-      /* Better footer wrapping */
       .footer-row{flex-direction:column; align-items:flex-start}
       .footer-links{row-gap:10px}
     }
@@ -582,18 +606,16 @@
     <div class="container">
       <div class="nav-inner">
         <div class="brand">
-          <div class="logo" aria-hidden="true"></div>
+          <img class="logo" src="assets/branding/logo.jpg" alt="ScanLiftLog logo" />
           <div>ScanLiftLog</div>
         </div>
 
-        <!-- Mobile nav button -->
         <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false">
           <div class="hamburger" aria-hidden="true">
             <span></span><span></span><span></span>
           </div>
         </button>
 
-        <!-- Desktop links -->
         <div class="nav-links" id="desktopNav">
           <a href="#how-it-works">How it works</a>
           <a href="#features">Features</a>
@@ -605,7 +627,6 @@
         </div>
       </div>
 
-      <!-- Mobile dropdown -->
       <div class="mobile-menu" id="mobileMenu">
         <div class="links">
           <a href="#how-it-works">How it works</a>
@@ -617,9 +638,17 @@
           <a class="btn primary" href="https://app.scanliftlog.com/?gym=main&machine=LEGPR" target="_blank" rel="noopener">Try demo</a>
         </div>
       </div>
-
     </div>
   </div>
+
+  <!-- TOP BANNER -->
+  <section class="top-banner">
+    <div class="container">
+      <div class="top-banner-wrap">
+        <img src="assets/branding/banner.jpg" alt="ScanLiftLog promotional banner" />
+      </div>
+    </div>
+  </section>
 
   <!-- HERO -->
   <header class="hero">
@@ -658,7 +687,6 @@
           </div>
         </div>
 
-        <!-- HERO VISUAL -->
         <div class="hero-card hero-media">
           <div class="shot phone">
             <img
@@ -1099,7 +1127,7 @@
     <div class="container">
       <div class="footer-row">
         <div class="pill">
-          <div class="logo" style="width:22px;height:22px;border-radius:9px"></div>
+          <img class="logo" src="assets/branding/logo.jpg" alt="ScanLiftLog logo" style="width:22px;height:22px;border-radius:9px" />
           <div class="small"><strong>ScanLiftLog</strong> — Powered by QR-first workout logging</div>
         </div>
 
@@ -1117,7 +1145,6 @@
     </div>
   </footer>
 
-  <!-- IMAGE LIGHTBOX -->
   <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Image preview">
     <div class="lightbox-inner">
       <button class="lightbox-close" type="button" id="lightboxClose" aria-label="Close image preview">×</button>
@@ -1128,7 +1155,6 @@
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Mobile menu toggle
     const navToggle = document.getElementById("navToggle");
     const mobileMenu = document.getElementById("mobileMenu");
 
@@ -1143,18 +1169,15 @@
       navToggle.setAttribute("aria-expanded", String(!isOpen));
     });
 
-    // Close menu when clicking a link
     mobileMenu.addEventListener("click", (e) => {
       const t = e.target;
       if (t && t.tagName === "A") closeMenu();
     });
 
-    // Close menu on resize back to desktop
     window.addEventListener("resize", () => {
       if (window.innerWidth > 720) closeMenu();
     });
 
-    // Image lightbox
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightboxImg");
     const lightboxClose = document.getElementById("lightboxClose");
