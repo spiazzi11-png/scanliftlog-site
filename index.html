@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ScanLiftLog — QR-based gym workout logging</title>
-  <meta name="description" content="Scan a machine QR code to instantly log sets, reps, and cardio stats — no app download, no account, no friction." />
+  <title>ScanLiftLog — QR-based gym workout tracking</title>
+  <meta name="description" content="Scan a machine QR code to instantly track workouts, add the experience to your home screen, and use the AI Workout Assistant — no app download, no account, no friction." />
 
   <style>
     :root{
@@ -600,102 +600,6 @@
 
     li{margin:6px 0}
 
-    .faq{
-      border:1px solid var(--line);
-      background: rgba(18,19,24,.66);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding:18px;
-    }
-
-    details{
-      border-top:1px solid rgba(255,255,255,.10);
-      padding:12px 0;
-    }
-
-    details:first-child{
-      border-top:0;
-      padding-top:0;
-    }
-
-    summary{
-      cursor:pointer;
-      font-weight:800;
-    }
-
-    details p{
-      margin:8px 0 0;
-      color:var(--muted);
-    }
-
-    .about-wrap{
-      display:grid;
-      grid-template-columns: 280px 1fr;
-      gap:22px;
-      align-items:center;
-    }
-
-    @media (max-width: 900px){
-      .about-wrap{
-        grid-template-columns:1fr;
-      }
-    }
-
-    .about-photo-card{
-      border:1px solid var(--line);
-      background: rgba(18,19,24,.66);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding:14px;
-    }
-
-    .about-photo{
-      width:100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      object-position: center top;
-      border-radius:16px;
-      display:block;
-      border:1px solid rgba(255,255,255,.10);
-      background:#0d0d10;
-    }
-
-    .about-copy{
-      border:1px solid var(--line);
-      background: rgba(18,19,24,.66);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding:22px;
-    }
-
-    .about-copy h3{
-      margin:0 0 10px;
-      font-size:24px;
-      letter-spacing:-.3px;
-    }
-
-    .about-copy p{
-      margin:0 0 14px;
-      color:var(--muted);
-      font-size:16px;
-    }
-
-    .about-copy p:last-child{
-      margin-bottom:0;
-    }
-
-    .about-highlights{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:16px;
-    }
-
-    .about-highlights .pill{
-      color:var(--text);
-      background: rgba(255,255,255,.04);
-    }
-
     footer{
       padding:30px 0 36px;
       color:var(--muted);
@@ -815,10 +719,7 @@
 
       .card,
       .step,
-      .price,
-      .faq,
-      .about-copy,
-      .about-photo-card{
+      .price{
         padding:16px;
         border-radius:16px;
       }
@@ -922,10 +823,12 @@
           <a href="#video">Video</a>
           <a href="#how-it-works">How it works</a>
           <a href="#features">Features</a>
+          <a href="#ai-assistant">AI Assistant</a>
           <a href="#screenshots">Screenshots</a>
           <a href="#qr-labels">QR labels</a>
-          <a href="#about">About</a>
           <a href="#pricing">Pricing</a>
+          <a href="/faq.html">FAQ</a>
+          <a href="/about.html">About</a>
           <a class="btn primary" href="/signup.html">Get Started Now</a>
         </div>
       </div>
@@ -935,10 +838,12 @@
           <a href="#video">Video</a>
           <a href="#how-it-works">How it works</a>
           <a href="#features">Features</a>
+          <a href="#ai-assistant">AI Assistant</a>
           <a href="#screenshots">Screenshots</a>
           <a href="#qr-labels">QR labels</a>
-          <a href="#about">About</a>
           <a href="#pricing">Pricing</a>
+          <a href="/faq.html">FAQ</a>
+          <a href="/about.html">About</a>
           <a class="btn primary" href="/signup.html">Get Started Now</a>
         </div>
       </div>
@@ -959,10 +864,9 @@
         <div class="hero-card hero-copy">
           <div class="inner">
             <div class="kicker">No app • No account • QR-first</div>
-            <h1>Machine-specific workout logging in seconds.</h1>
+            <h1>Machine-specific workout tracking in seconds.</h1>
             <p class="sub">
-              Scan a QR code on any machine to instantly log sets & reps or cardio stats —
-              and view your history right there on your phone.
+              Scan a QR code on any machine to instantly track sets, reps, weight, or cardio stats — add it to your home screen, use the AI Workout Assistant, and keep members moving without the friction of a traditional app.
             </p>
 
             <div class="cta-row">
@@ -975,15 +879,15 @@
             </div>
 
             <div class="hero-proof">
-              <span>Instant in-browser logging</span>
-              <span>QR-first, no installs</span>
+              <span>Instant in-browser workout tracking</span>
+              <span>Home screen access without an app store</span>
             </div>
 
             <div class="trust-strip">
               <div class="trust-pill">No app download</div>
               <div class="trust-pill">No account required</div>
               <div class="trust-pill">Private by default</div>
-              <div class="trust-pill">Works on any machine</div>
+              <div class="trust-pill">AI-guided workout support</div>
             </div>
 
             <div class="mini">
@@ -994,13 +898,13 @@
 
         <div class="hero-card hero-media">
           <div class="shot phone">
-            <img src="assets/screenshots/ClipS.jpg" alt="ScanLiftLog strength logging UI" class="zoomable" loading="lazy" />
-            <div class="caption">Strength logging UI — sets, weight, reps, and notes.</div>
+            <img src="assets/screenshots/ClipS.jpg" alt="ScanLiftLog strength tracking UI" class="zoomable" loading="lazy" />
+            <div class="caption">Strength tracking UI — sets, weight, reps, and notes.</div>
           </div>
 
           <div class="shot phone">
-            <img src="assets/screenshots/ClipC.jpg" alt="ScanLiftLog cardio logging UI" class="zoomable" loading="lazy" />
-            <div class="caption">Cardio logging UI — minutes required, optional metrics like calories, distance, incline, speed.</div>
+            <img src="assets/screenshots/ClipC.jpg" alt="ScanLiftLog cardio tracking UI" class="zoomable" loading="lazy" />
+            <div class="caption">Cardio tracking UI — minutes required, optional metrics like calories, distance, incline, speed.</div>
           </div>
         </div>
       </div>
@@ -1023,7 +927,7 @@
     <div class="container">
       <div class="section-title">
         <h2>How it works</h2>
-        <p>Simple for members. Simple for gyms. You label machines once, and members scan to log forever.</p>
+        <p>Simple for members. Simple for gyms. You label machines once, and members scan to track forever.</p>
       </div>
 
       <div class="steps">
@@ -1038,8 +942,8 @@
         <div class="step">
           <div class="num">2</div>
           <div>
-            <h3>Member scans and logs instantly</h3>
-            <p>Strength machines show sets/reps/weight. Cardio machines show time + machine stats.</p>
+            <h3>Member scans and tracks instantly</h3>
+            <p>Strength machines show sets/reps/weight. Cardio machines show time + machine stats. Members can also switch machines from inside the experience with the in-app dropdown.</p>
           </div>
         </div>
 
@@ -1047,15 +951,15 @@
           <div class="num">3</div>
           <div>
             <h3>History is always tied to the machine</h3>
-            <p>Members can see what they did last time on that exact piece of equipment.</p>
+            <p>Members can see what they did last time on that exact piece of equipment and add the experience to their home screen for faster access next time.</p>
           </div>
         </div>
 
         <div class="step">
           <div class="num">4</div>
           <div>
-            <h3>Download + Upload to move phones</h3>
-            <p>Members can export their data to a file and re-upload it on a new device to restore it.</p>
+            <h3>AI can help guide the next workout</h3>
+            <p>The AI Workout Assistant builds workout plans around goals, time available, and experience level to help members get started faster.</p>
           </div>
         </div>
       </div>
@@ -1075,24 +979,67 @@
           <p>Your log is anchored to the exact equipment you’re using — no searching, no scrolling, no confusion.</p>
         </div>
         <div class="card">
-          <h3>Universal across brands</h3>
-          <p>Works for selectorized machines, free weights, racks, cables, and cardio — any gym, any manufacturer.</p>
+          <h3>Add to Home Screen</h3>
+          <p>Members can save the experience directly to their phone’s home screen for faster access without app store downloads or logins.</p>
+        </div>
+        <div class="card">
+          <h3>AI Workout Assistant</h3>
+          <p>Build workout plans around a member’s goals, available time, and experience level right inside the experience.</p>
+        </div>
+        <div class="card">
+          <h3>Machine dropdown switching</h3>
+          <p>Members can continue moving through the gym without having to rescan every time if they want to switch to another machine in-app.</p>
         </div>
         <div class="card">
           <h3>Private by default</h3>
           <p>No personal info required. Member history stays on-device by default.</p>
         </div>
         <div class="card">
-          <h3>Download + Upload</h3>
-          <p>Members can back up their workout history and restore it when they switch phones.</p>
-        </div>
-        <div class="card">
-          <h3>Simple gym rollout</h3>
-          <p>We ship you your machine specific QR code labels. Apply the labels to each machine. Done. No onboarding sessions, no member accounts to manage.</p>
-        </div>
-        <div class="card">
           <h3>Admin analytics ready</h3>
-          <p>Optional: track scans, saves, most-used machines, engagement by day/hour, and “dead machines.”</p>
+          <p>Optional: track scans, saves, most-used machines, engagement by day/hour, banner clicks, and “dead machines.”</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ai-assistant">
+    <div class="container">
+      <div class="section-title">
+        <h2>AI Workout Assistant</h2>
+        <p>A guided feature that helps members get started faster while giving gyms another premium layer inside the workout experience.</p>
+      </div>
+
+      <div class="card" style="margin-bottom:14px;">
+        <h3 style="margin-top:0">Guided workout plans based on goals, time, and experience.</h3>
+        <p>
+          The AI Workout Assistant helps members build a guided workout plan right inside ScanLiftLog. Users can choose the body part they want to train, how much time they have, and their experience level, then get a workout plan designed to help them move through the gym with more clarity and less guesswork.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Beginner-friendly entry point</h3>
+          <p>Great for members who want structure, need a starting point, or are not sure what to do when they get to the gym.</p>
+        </div>
+        <div class="card">
+          <h3>Built around the gym experience</h3>
+          <p>The assistant is designed to work inside the same machine-based tracking flow members are already using, so it feels like a natural extension of the platform.</p>
+        </div>
+        <div class="card">
+          <h3>Guided workout flow</h3>
+          <p>Instead of just giving members a static list, the assistant supports a more guided machine-to-machine workout experience inside the app.</p>
+        </div>
+        <div class="card">
+          <h3>Stronger member value</h3>
+          <p>AI guidance helps the platform feel more premium, more useful for beginners, and more valuable to members across a wider range of training styles.</p>
+        </div>
+        <div class="card">
+          <h3>Helps reduce decision friction</h3>
+          <p>Members can spend less time deciding what to do and more time actually training, which helps support consistency and engagement.</p>
+        </div>
+        <div class="card">
+          <h3>Built to grow over time</h3>
+          <p>The AI Assistant is positioned as a growing feature that can continue evolving as the platform adds more guided coaching and personalization.</p>
         </div>
       </div>
     </div>
@@ -1102,7 +1049,7 @@
     <div class="container">
       <div class="section-title">
         <h2>Built to Drive Member Engagement</h2>
-        <p>ScanLiftLog does more than log workouts — it helps gyms keep members engaged, motivated, and coming back.</p>
+        <p>ScanLiftLog does more than track workouts — it helps gyms keep members engaged, motivated, and coming back.</p>
       </div>
 
       <div class="grid-3">
@@ -1116,7 +1063,7 @@
         <div class="card">
           <h3>Badge System</h3>
           <p>
-            Members unlock progress milestones as they continue logging workouts. The badge system adds momentum, achievement, and a stronger sense of progress that helps keep members engaged over time.
+            Members unlock progress milestones as they continue tracking workouts. The badge system adds momentum, achievement, and a stronger sense of progress that helps keep members engaged over time.
           </p>
         </div>
 
@@ -1134,18 +1081,18 @@
     <div class="container">
       <div class="section-title">
         <h2>Product screenshots</h2>
-        <p>Real UI screens from the live experience: strength logging, cardio logging, and history review.</p>
+        <p>Real UI screens from the live experience: strength tracking, cardio tracking, and history review.</p>
       </div>
 
       <div class="shots-grid">
         <div class="shot phone">
-          <img src="assets/screenshots/ClipS.jpg" alt="Strength logging screen showing sets, weight, reps" class="zoomable" loading="lazy" />
-          <div class="caption">Strength logging: sets, weight, reps, notes, and exercise.</div>
+          <img src="assets/screenshots/ClipS.jpg" alt="Strength tracking screen showing sets, weight, reps" class="zoomable" loading="lazy" />
+          <div class="caption">Strength tracking: sets, weight, reps, notes, and exercise.</div>
         </div>
 
         <div class="shot phone">
-          <img src="assets/screenshots/ClipC.jpg" alt="Cardio logging screen showing minutes and optional stats" class="zoomable" loading="lazy" />
-          <div class="caption">Cardio logging: minutes required, optional calories/distance/incline/speed.</div>
+          <img src="assets/screenshots/ClipC.jpg" alt="Cardio tracking screen showing minutes and optional stats" class="zoomable" loading="lazy" />
+          <div class="caption">Cardio tracking: minutes required, optional calories/distance/incline/speed.</div>
         </div>
 
         <div class="shot wide">
@@ -1251,56 +1198,6 @@
     </div>
   </section>
 
-  <section id="about">
-    <div class="container">
-      <div class="section-title">
-        <h2>Meet the Founder</h2>
-        <p>Know who you're working with and why ScanLiftLog was built.</p>
-      </div>
-
-      <div class="about-wrap">
-        <div class="about-photo-card">
-          <img class="about-photo" src="assets/chris.JPG" alt="Chris Spiazzi, founder of ScanLiftLog" loading="lazy" />
-        </div>
-
-        <div class="about-copy">
-          <h3>Hi, I’m Chris Spiazzi, founder of ScanLiftLog.</h3>
-
-          <p>
-            I created ScanLiftLog because I saw an opportunity to make workout tracking easier for both gym owners and members. Too often, people want to track their progress, but most systems are either too complicated, require an app download, or create enough friction that people stop using them consistently.
-          </p>
-
-          <p>
-            ScanLiftLog solves that with a simple idea: members scan a QR code on a machine and instantly log their workout history, progress, and performance with no app, no login, and no hassle.
-          </p>
-
-          <p>
-            My background is in operations, logistics, and building systems that make things run better. I’ve always been focused on improving processes, increasing efficiency, and creating tools that people actually use. With ScanLiftLog, I’ve taken that same mindset and applied it to the gym environment.
-          </p>
-
-          <p>
-            This isn’t a generic software company or a mass-produced fitness product. ScanLiftLog is something I’ve built with a hands-on approach, paying attention to the details that matter, from gym branding and QR label design to user experience, analytics, and real-world functionality.
-          </p>
-
-          <p>
-            My goal is simple: help gyms offer a better member experience, encourage consistency, and bring a modern, engaging layer to the workout floor.
-          </p>
-
-          <p>
-            When you work with ScanLiftLog, you’re working directly with the person who built it, believes in it, and is committed to making it better.
-          </p>
-
-          <div class="about-highlights">
-            <div class="pill">Founder-built</div>
-            <div class="pill">Hands-on support</div>
-            <div class="pill">Gym-focused solution</div>
-            <div class="pill">Built for real-world use</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section id="pricing">
     <div class="container">
       <div class="section-title">
@@ -1344,9 +1241,13 @@
           Every plan includes the full ScanLiftLog experience:
         </p>
         <ul>
-          <li>Unlimited scans and workout logs</li>
+          <li>Unlimited scans and workout tracking</li>
           <li>Strength and cardio machine support</li>
           <li>Machine-specific history per user</li>
+          <li>AI Workout Assistant and guided workout flow</li>
+          <li>Add to Home Screen support</li>
+          <li>Machine dropdown switching</li>
+          <li>Consistency tracker and badge system</li>
           <li>Download + Upload to move data to a new phone</li>
           <li>Gym-specific QR codes and machine naming</li>
           <li>Ongoing hosting and maintenance</li>
@@ -1363,9 +1264,7 @@
           The setup fee is <strong>waived</strong> when you commit to any 3-month or longer term.
         </p>
 
-        <div class="hr"></div>
-
-        <h3 style="margin:0 0 8px">Term discounts</h3>
+        <h3 style="margin:18px 0 8px">Term discounts</h3>
         <p style="color:var(--muted); margin:0 0 10px">
           Discounts apply to term commitments (3/6/12 months). Month-to-month is the standard rate.
         </p>
@@ -1403,32 +1302,6 @@
     </div>
   </section>
 
-  <section>
-    <div class="container">
-      <div class="section-title">
-        <h2>FAQ</h2>
-        <p>Quick answers to common questions gyms and members ask.</p>
-      </div>
-
-      <div class="faq">
-        <details open>
-          <summary>Does this require an app download?</summary>
-          <p>No. ScanLiftLog is QR-first and opens instantly in the mobile browser.</p>
-        </details>
-
-        <details>
-          <summary>Do members need to create an account?</summary>
-          <p>No personal information is required. History stays on-device by default, and users can export/import data.</p>
-        </details>
-
-        <details>
-          <summary>What happens if a gym cancels?</summary>
-          <p>Gyms can be set to ACTIVE/DISABLED. When disabled, QR scans show “service inactive” without removing stickers.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
   <section id="contact">
     <div class="container">
       <div class="hero-card">
@@ -1453,10 +1326,12 @@
       <div class="footer-row">
         <div class="pill">
           <img class="logo" src="assets/logo.jpg" alt="ScanLiftLog logo" style="width:22px;height:22px;border-radius:9px;padding:0;" />
-          <div class="small"><strong>ScanLiftLog</strong> — Powered by QR-first workout logging</div>
+          <div class="small"><strong>ScanLiftLog</strong> — Powered by QR-first workout tracking</div>
         </div>
 
         <div class="footer-links small">
+          <a href="/faq.html">FAQ</a>
+          <a href="/about.html">About</a>
           <a href="/privacy.html">Privacy Policy</a>
           <a href="/terms.html">Terms of Service</a>
           <span>© <span id="y"></span> ScanLiftLog</span>
