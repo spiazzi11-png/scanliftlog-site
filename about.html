@@ -1,1 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About — ScanLiftLog</title>
+  <meta name="description" content="Learn more about Chris Spiazzi, founder of ScanLiftLog, and why ScanLiftLog was built." />
 
+  <style>
+    :root{
+      --bg:#0b0c10;
+      --panel:#121318;
+      --text:#e9e9ee;
+      --muted:#a9a9b6;
+      --line:rgba(255,255,255,.10);
+      --shadow:0 10px 40px rgba(0,0,0,.35);
+      --radius:18px;
+      --radius2:26px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    html{scroll-behavior:smooth;}
+
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1000px 600px at 20% 0%, rgba(139,92,246,.22), transparent 60%),
+        radial-gradient(900px 600px at 90% 10%, rgba(34,197,94,.14), transparent 55%),
+        linear-gradient(180deg, #07080c 0%, #0b0c10 70%, #07080c 100%);
+      color:var(--text);
+      line-height:1.45;
+    }
+
+    a{color:inherit}
+    .container{max-width:1100px;margin:0 auto;padding:0 18px}
+
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:20;
+      backdrop-filter: blur(10px);
+      background: rgba(11,12,16,.72);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      font-weight:800;
+      letter-spacing:.2px;
+      text-decoration:none;
+    }
+
+    .logo{
+      width:78px;
+      height:78px;
+      border-radius:16px;
+      object-fit:contain;
+      object-position:center;
+      display:block;
+      box-shadow: var(--shadow);
+      border:1px solid rgba(255,255,255,.10);
+      background:#0d0d10;
+      padding:4px;
+      flex:0 0 auto;
+    }
+
+    .brand-text{
+      font-size:18px;
+      line-height:1;
+      white-space:nowrap;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      color:var(--muted);
+      font-weight:600;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid transparent;
+      white-space:nowrap;
+    }
+
+    .nav-links a:hover{
+      border-color:var(--line);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      text-decoration:none;
+      font-weight:800;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      box-shadow: 0 8px 26px rgba(0,0,0,.25);
+    }
+
+    .btn.primary{
+      border-color: rgba(220,38,38,.55);
+      background: linear-gradient(135deg, rgba(220,38,38,.95), rgba(185,28,28,.78));
+    }
+
+    .hero{
+      padding:34px 0 18px;
+    }
+
+    .hero-card{
+      border:1px solid var(--line);
+      background: rgba(18,19,24,.72);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .hero-card .inner{
+      padding:28px;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      color:var(--muted);
+      font-weight:700;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      padding:8px 12px;
+      border-radius:999px;
+    }
+
+    h1{
+      margin:14px 0 10px;
+      font-size:42px;
+      line-height:1.07;
+      letter-spacing:-.7px;
+    }
+
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size:18px;
+      max-width:60ch;
+    }
+
+    section{padding:30px 0}
+
+    .section-title{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
+    }
+
+    .section-title h2{
+      margin:0;
+      font-size:26px;
+      letter-spacing:-.3px;
+    }
+
+    .section-title p{
+      margin:0;
+      color:var(--muted);
+      max-width:65ch;
+    }
+
+    .about-wrap{
+      display:grid;
+      grid-template-columns:280px 1fr;
+      gap:22px;
+      align-items:center;
+    }
+
+    @media (max-width: 900px){
+      .about-wrap{
+        grid-template-columns:1fr;
+      }
+    }
+
+    .about-photo-card{
+      border:1px solid var(--line);
+      background: rgba(18,19,24,.66);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:14px;
+    }
+
+    .about-photo{
+      width:100%;
+      aspect-ratio:1 / 1;
+      object-fit:cover;
+      object-position:center top;
+      border-radius:16px;
+      display:block;
+      border:1px solid rgba(255,255,255,.10);
+      background:#0d0d10;
+    }
+
+    .about-copy{
+      border:1px solid var(--line);
+      background: rgba(18,19,24,.66);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:22px;
+    }
+
+    .about-copy h3{
+      margin:0 0 10px;
+      font-size:24px;
+      letter-spacing:-.3px;
+    }
+
+    .about-copy p{
+      margin:0 0 14px;
+      color:var(--muted);
+      font-size:16px;
+    }
+
+    .about-copy p:last-child{
+      margin-bottom:0;
+    }
+
+    .about-highlights{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:16px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color:var(--text);
+    }
+
+    footer{
+      padding:30px 0 36px;
+      color:var(--muted);
+      border-top:1px solid var(--line);
+      margin-top:14px;
+    }
+
+    .footer-row{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .small{font-size:13px}
+
+    .footer-links{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .footer-links a{
+      text-decoration:none;
+      border-bottom:1px solid transparent;
+      padding:4px 0;
+    }
+
+    .footer-links a:hover{
+      color:var(--text);
+      border-bottom-color:rgba(255,255,255,.35);
+    }
+
+    .footer-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .footer-action{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      text-decoration:none;
+      font-weight:700;
+      color:var(--text);
+    }
+
+    @media (max-width: 720px){
+      .container{padding:0 14px}
+
+      .nav-inner{
+        padding:12px 0;
+      }
+
+      .logo{
+        width:86px;
+        height:86px;
+        border-radius:16px;
+        padding:4px;
+      }
+
+      .brand-text{
+        font-size:17px;
+        white-space:normal;
+      }
+
+      .hero-card .inner{
+        padding:18px;
+      }
+
+      h1{font-size:34px}
+      .sub{font-size:16px}
+
+      .about-copy,
+      .about-photo-card{
+        padding:16px;
+        border-radius:16px;
+      }
+
+      .footer-row{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+  </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JTKYEYNREN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JTKYEYNREN');
+  </script>
+</head>
+
+<body>
+  <div class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="brand" href="/index.html">
+          <img class="logo" src="assets/logo.jpg" alt="ScanLiftLog logo" />
+          <div class="brand-text">ScanLiftLog</div>
+        </a>
+
+        <div class="nav-links">
+          <a href="/index.html">Home</a>
+          <a href="/faq.html">FAQ</a>
+          <a class="btn primary" href="/signup.html">Get Started Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="container">
+      <div class="hero-card">
+        <div class="inner">
+          <div class="kicker">Founder-built • Hands-on support • Gym-focused</div>
+          <h1>Meet the Founder</h1>
+          <p class="sub">Know who you're working with and why ScanLiftLog was built.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-title">
+        <h2>About Chris Spiazzi</h2>
+        <p>Know who you're working with and why ScanLiftLog was built.</p>
+      </div>
+
+      <div class="about-wrap">
+        <div class="about-photo-card">
+          <img class="about-photo" src="assets/chris.JPG" alt="Chris Spiazzi, founder of ScanLiftLog" loading="lazy" />
+        </div>
+
+        <div class="about-copy">
+          <h3>Hi, I’m Chris Spiazzi, founder of ScanLiftLog.</h3>
+
+          <p>
+            I created ScanLiftLog because I saw an opportunity to make workout tracking easier for both gym owners and members. Too often, people want to track their progress, but most systems are either too complicated, require an app download, or create enough friction that people stop using them consistently.
+          </p>
+
+          <p>
+            ScanLiftLog solves that with a simple idea: members scan a QR code on a machine and instantly log their workout history, progress, and performance with no app, no login, and no hassle.
+          </p>
+
+          <p>
+            My background is in operations, logistics, and building systems that make things run better. I’ve always been focused on improving processes, increasing efficiency, and creating tools that people actually use. With ScanLiftLog, I’ve taken that same mindset and applied it to the gym environment.
+          </p>
+
+          <p>
+            This isn’t a generic software company or a mass-produced fitness product. ScanLiftLog is something I’ve built with a hands-on approach, paying attention to the details that matter, from gym branding and QR label design to user experience, analytics, and real-world functionality.
+          </p>
+
+          <p>
+            My goal is simple: help gyms offer a better member experience, encourage consistency, and bring a modern, engaging layer to the workout floor.
+          </p>
+
+          <p>
+            When you work with ScanLiftLog, you’re working directly with the person who built it, believes in it, and is committed to making it better.
+          </p>
+
+          <div class="about-highlights">
+            <div class="pill">Founder-built</div>
+            <div class="pill">Hands-on support</div>
+            <div class="pill">Gym-focused solution</div>
+            <div class="pill">Built for real-world use</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-row">
+        <div class="pill">
+          <img class="logo" src="assets/logo.jpg" alt="ScanLiftLog logo" style="width:22px;height:22px;border-radius:9px;padding:0;" />
+          <div class="small"><strong>ScanLiftLog</strong> — Powered by QR-first workout tracking</div>
+        </div>
+
+        <div class="footer-links small">
+          <a href="/faq.html">FAQ</a>
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Service</a>
+          <span>© <span id="y"></span> ScanLiftLog</span>
+        </div>
+      </div>
+
+      <div class="footer-actions" style="margin-top:12px">
+        <a class="footer-action" href="mailto:info@scanliftlog.com?subject=ScanLiftLog%20Inquiry">Email sales</a>
+        <a class="footer-action" href="/agreement/scanliftlog-service-agreement.pdf" target="_blank" rel="noopener">Service Agreement</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
