@@ -1,1 +1,642 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FAQ — ScanLiftLog</title>
+  <meta name="description" content="Frequently asked questions about ScanLiftLog for gym owners and gym members." />
 
+  <style>
+    :root{
+      --bg:#0b0c10;
+      --panel:#121318;
+      --text:#e9e9ee;
+      --muted:#a9a9b6;
+      --line:rgba(255,255,255,.10);
+      --shadow:0 10px 40px rgba(0,0,0,.35);
+      --radius:18px;
+      --radius2:26px;
+      --accent:#dc2626;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    html{scroll-behavior:smooth;}
+
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1000px 600px at 20% 0%, rgba(139,92,246,.22), transparent 60%),
+        radial-gradient(900px 600px at 90% 10%, rgba(34,197,94,.14), transparent 55%),
+        linear-gradient(180deg, #07080c 0%, #0b0c10 70%, #07080c 100%);
+      color:var(--text);
+      line-height:1.5;
+    }
+
+    a{color:inherit}
+    .container{max-width:1100px;margin:0 auto;padding:0 18px}
+
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:20;
+      backdrop-filter: blur(10px);
+      background: rgba(11,12,16,.72);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      font-weight:800;
+      letter-spacing:.2px;
+      text-decoration:none;
+    }
+
+    .logo{
+      width:78px;
+      height:78px;
+      border-radius:16px;
+      object-fit:contain;
+      object-position:center;
+      display:block;
+      box-shadow: var(--shadow);
+      border:1px solid rgba(255,255,255,.10);
+      background:#0d0d10;
+      padding:4px;
+      flex:0 0 auto;
+    }
+
+    .brand-text{
+      font-size:18px;
+      line-height:1;
+      white-space:nowrap;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      color:var(--muted);
+      font-weight:600;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid transparent;
+      white-space:nowrap;
+    }
+
+    .nav-links a:hover{
+      border-color:var(--line);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      text-decoration:none;
+      font-weight:800;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      box-shadow: 0 8px 26px rgba(0,0,0,.25);
+    }
+
+    .btn.primary{
+      border-color: rgba(220,38,38,.55);
+      background: linear-gradient(135deg, rgba(220,38,38,.95), rgba(185,28,28,.78));
+    }
+
+    .hero{
+      padding:34px 0 18px;
+    }
+
+    .hero-card{
+      border:1px solid var(--line);
+      background: rgba(18,19,24,.72);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .hero-card .inner{
+      padding:28px;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      color:var(--muted);
+      font-weight:700;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      padding:8px 12px;
+      border-radius:999px;
+    }
+
+    h1{
+      margin:14px 0 10px;
+      font-size:42px;
+      line-height:1.07;
+      letter-spacing:-.7px;
+    }
+
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size:18px;
+      max-width:70ch;
+    }
+
+    section{padding:30px 0}
+
+    .section-title{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
+    }
+
+    .section-title h2{
+      margin:0;
+      font-size:26px;
+      letter-spacing:-.3px;
+    }
+
+    .section-title p{
+      margin:0;
+      color:var(--muted);
+      max-width:68ch;
+    }
+
+    .faq-group{
+      border:1px solid var(--line);
+      background: rgba(18,19,24,.66);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      margin-bottom:18px;
+    }
+
+    .faq-group-header{
+      padding:20px 22px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+    }
+
+    .faq-group-header h2{
+      margin:0 0 6px;
+      font-size:24px;
+      letter-spacing:-.3px;
+    }
+
+    .faq-group-header p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .faq-items{
+      padding:4px 22px 10px;
+    }
+
+    details{
+      border-top:1px solid rgba(255,255,255,.10);
+      padding:14px 0;
+    }
+
+    details:first-child{
+      border-top:0;
+    }
+
+    summary{
+      cursor:pointer;
+      font-weight:800;
+      font-size:17px;
+      list-style:none;
+      position:relative;
+      padding-right:28px;
+    }
+
+    summary::-webkit-details-marker{
+      display:none;
+    }
+
+    summary::after{
+      content:"+";
+      position:absolute;
+      right:0;
+      top:0;
+      color:var(--muted);
+      font-size:22px;
+      line-height:1;
+      transition:transform .18s ease;
+    }
+
+    details[open] summary::after{
+      content:"−";
+    }
+
+    details p{
+      margin:10px 0 0;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .cta-card{
+      border:1px solid var(--line);
+      background: rgba(18,19,24,.72);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      padding:24px;
+      margin-top:8px;
+    }
+
+    .cta-card h3{
+      margin:0 0 10px;
+      font-size:24px;
+      letter-spacing:-.3px;
+    }
+
+    .cta-card p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .cta-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:18px;
+    }
+
+    footer{
+      padding:30px 0 36px;
+      color:var(--muted);
+      border-top:1px solid var(--line);
+      margin-top:14px;
+    }
+
+    .footer-row{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+    }
+
+    .small{font-size:13px}
+
+    .footer-links{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .footer-links a{
+      text-decoration:none;
+      border-bottom:1px solid transparent;
+      padding:4px 0;
+    }
+
+    .footer-links a:hover{
+      color:var(--text);
+      border-bottom-color:rgba(255,255,255,.35);
+    }
+
+    .footer-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .footer-action{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      text-decoration:none;
+      font-weight:700;
+      color:var(--text);
+    }
+
+    @media (max-width: 720px){
+      .container{padding:0 14px}
+
+      .nav-inner{
+        padding:12px 0;
+      }
+
+      .logo{
+        width:86px;
+        height:86px;
+        border-radius:16px;
+        padding:4px;
+      }
+
+      .brand-text{
+        font-size:17px;
+        white-space:normal;
+      }
+
+      .hero-card .inner{
+        padding:18px;
+      }
+
+      h1{font-size:34px}
+      .sub{font-size:16px}
+
+      .faq-group-header,
+      .faq-items,
+      .cta-card{
+        padding-left:16px;
+        padding-right:16px;
+      }
+
+      .footer-row{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+  </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JTKYEYNREN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JTKYEYNREN');
+  </script>
+</head>
+
+<body>
+  <div class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="brand" href="/index.html">
+          <img class="logo" src="assets/logo.jpg" alt="ScanLiftLog logo" />
+          <div class="brand-text">ScanLiftLog</div>
+        </a>
+
+        <div class="nav-links">
+          <a href="/index.html">Home</a>
+          <a href="/about.html">About</a>
+          <a class="btn primary" href="/signup.html">Get Started Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="container">
+      <div class="hero-card">
+        <div class="inner">
+          <div class="kicker">Questions from owners and members</div>
+          <h1>Frequently Asked Questions</h1>
+          <p class="sub">
+            Quick answers to the questions we hear most often from gym owners considering ScanLiftLog and members using it on the gym floor.
+          </p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="container">
+      <div class="faq-group">
+        <div class="faq-group-header">
+          <h2>For Gym Owners</h2>
+          <p>Common questions about setup, pricing, analytics, customization, member experience, and how ScanLiftLog fits into your facility.</p>
+        </div>
+
+        <div class="faq-items">
+          <details open>
+            <summary>1. What exactly is ScanLiftLog?</summary>
+            <p>
+              ScanLiftLog is a QR-based workout tracking system for gyms. Each machine gets a machine-specific QR code label. Members scan the label, instantly open the workout experience on their phone, and track sets, reps, weight, or cardio stats right there on that exact piece of equipment. It adds a modern, interactive layer to your gym floor without requiring a traditional app rollout.
+            </p>
+          </details>
+
+          <details>
+            <summary>2. Does this require members to download an app or create an account?</summary>
+            <p>
+              No. That is one of the biggest advantages of the platform. Members can open it instantly in their mobile browser by scanning the QR code. There is no app store download, no account creation, and no password friction. Members can also add it to their home screen for faster access while still using the same web-based experience.
+            </p>
+          </details>
+
+          <details>
+            <summary>3. How does setup work for a gym?</summary>
+            <p>
+              Setup is straightforward. You provide your equipment list, and ScanLiftLog generates machine-specific QR code links and print-ready labels tied to your location and equipment names. Once the labels are applied to your floor, members can begin scanning and tracking. The goal is to keep rollout simple so there is very little operational burden on the gym.
+            </p>
+          </details>
+
+          <details>
+            <summary>4. Can the QR labels be customized to match our gym brand?</summary>
+            <p>
+              Yes. Labels can be customized to reflect your gym’s branding, including gym name, machine name, colors, design style, and overall look. The goal is to make the labels feel like they belong in your facility, not like generic third-party stickers.
+            </p>
+          </details>
+
+          <details>
+            <summary>5. What kinds of equipment does ScanLiftLog work with?</summary>
+            <p>
+              It is designed to support a wide range of equipment types, including selectorized machines, plate-loaded machines, racks, cables, and cardio equipment. Strength machines can support set, rep, and weight tracking, while cardio equipment can support time and other machine-specific stats such as calories, distance, incline, or speed when relevant.
+            </p>
+          </details>
+
+          <details>
+            <summary>6. What analytics can gym owners see?</summary>
+            <p>
+              Gym-facing analytics can include data such as total scans, total saved workouts, most-used machines, engagement by day, repeat usage, and other floor-level activity insights. These analytics are designed to help owners understand usage patterns and see how members are interacting with the system across the facility.
+            </p>
+          </details>
+
+          <details>
+            <summary>7. Does ScanLiftLog collect personal information from members?</summary>
+            <p>
+              The platform is designed to keep friction low and privacy strong. Members do not need to create an account or submit personal information to start using the system. Workout history is stored on the user’s device by default, which helps keep the experience simple and private.
+            </p>
+          </details>
+
+          <details>
+            <summary>8. What happens if a gym cancels service?</summary>
+            <p>
+              The system can be disabled at the gym level without physically removing every label from the floor. That means if a location stops service, scans can show that the service is inactive rather than continuing to function normally. This makes it easier to control access and maintain the system operationally.
+            </p>
+          </details>
+
+          <details>
+            <summary>9. Is this useful for trainers and beginner members too?</summary>
+            <p>
+              Yes. Trainers can use it as a cleaner, machine-specific way to help clients track work on the floor. It is also helpful for beginners who want structure and guidance without dealing with a complicated fitness app. Features like the AI Workout Assistant and machine-based history help reduce confusion and make the floor feel more approachable.
+            </p>
+          </details>
+
+          <details>
+            <summary>10. Why would a gym choose this instead of building its own app?</summary>
+            <p>
+              Building a custom gym app is expensive, time-consuming, and usually far more complex than most gyms expect. ScanLiftLog gives gyms a modern digital workout experience without app store development, account management systems, or large software build costs. It is a faster, lower-friction way to add visible value to the member experience.
+            </p>
+          </details>
+        </div>
+      </div>
+
+      <div class="faq-group">
+        <div class="faq-group-header">
+          <h2>For Gym Members</h2>
+          <p>Common questions from people using ScanLiftLog while training, including how to start, how data is stored, and how the AI Assistant works.</p>
+        </div>
+
+        <div class="faq-items">
+          <details open>
+            <summary>1. How do I start using ScanLiftLog?</summary>
+            <p>
+              The easiest way to start is to scan the QR code on a machine in the gym. That opens the workout tracking page for that exact machine. From there, you can enter your workout details and save them right on your phone.
+            </p>
+          </details>
+
+          <details>
+            <summary>2. Do I need to download an app?</summary>
+            <p>
+              No. ScanLiftLog opens right in your phone’s browser. In many gyms, you can also add it to your home screen for faster access later, so it feels more like an app without needing to download anything from an app store.
+            </p>
+          </details>
+
+          <details>
+            <summary>3. Do I need to create an account or enter personal information?</summary>
+            <p>
+              No. You do not need to create an account, set a password, or enter personal information to begin tracking workouts. The experience is built to be quick and low-friction so you can scan and get started right away.
+            </p>
+          </details>
+
+          <details>
+            <summary>4. What can I track on a strength machine?</summary>
+            <p>
+              On strength equipment, you can typically track sets, reps, and weight, along with optional notes or exercise details depending on the setup. This makes it easy to see what you did last time and build consistency on that same machine.
+            </p>
+          </details>
+
+          <details>
+            <summary>5. What can I track on cardio machines?</summary>
+            <p>
+              On cardio equipment, the setup can include required time plus optional machine stats such as calories, distance, incline, speed, resistance, or similar fields depending on the equipment and gym configuration.
+            </p>
+          </details>
+
+          <details>
+            <summary>6. Can I switch machines without scanning another QR code?</summary>
+            <p>
+              In gyms where the machine dropdown feature is enabled, yes. Once you are inside the experience, you may be able to switch to another machine using the in-app machine list instead of scanning again. This makes it easier to move through a workout while staying in the same workflow.
+            </p>
+          </details>
+
+          <details>
+            <summary>7. Where is my workout history stored?</summary>
+            <p>
+              By default, your workout history is stored on your device. That helps keep the experience simple and private. It also means your history is tied to the phone and browser you are using unless you export and restore it on another device.
+            </p>
+          </details>
+
+          <details>
+            <summary>8. What happens if I get a new phone?</summary>
+            <p>
+              If you use the built-in download/export and upload/restore tools, you can move your workout history to a new device. This helps preserve your tracked progress when switching phones.
+            </p>
+          </details>
+
+          <details>
+            <summary>9. What happens if I clear my browser data?</summary>
+            <p>
+              Because workout history is stored on-device by default, clearing your browser storage can remove your saved workout history from that device. If your gym’s setup includes export/backup features, it is a good idea to save your data periodically if you want added protection.
+            </p>
+          </details>
+
+          <details>
+            <summary>10. What is the AI Workout Assistant?</summary>
+            <p>
+              The AI Workout Assistant is a guided feature that helps build a workout plan based on things like your goals, available time, and experience level. It is designed to help members get started faster and reduce the guesswork of deciding what to do next in the gym. It should be used as general workout guidance, not medical advice.
+            </p>
+          </details>
+        </div>
+      </div>
+
+      <div class="cta-card">
+        <h3>Still have questions?</h3>
+        <p>
+          If you are a gym owner interested in bringing ScanLiftLog to your facility, or a member with questions about how it works at your gym, reach out and we’ll help point you in the right direction.
+        </p>
+
+        <div class="cta-row">
+          <a class="btn primary" href="mailto:info@scanliftlog.com?subject=ScanLiftLog%20FAQ%20Question">Email Us</a>
+          <a class="btn" href="/signup.html">Get Started Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-row">
+        <div class="pill">
+          <img class="logo" src="assets/logo.jpg" alt="ScanLiftLog logo" style="width:22px;height:22px;border-radius:9px;padding:0;" />
+          <div class="small"><strong>ScanLiftLog</strong> — Powered by QR-first workout tracking</div>
+        </div>
+
+        <div class="footer-links small">
+          <a href="/about.html">About</a>
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Service</a>
+          <span>© <span id="y"></span> ScanLiftLog</span>
+        </div>
+      </div>
+
+      <div class="footer-actions" style="margin-top:12px">
+        <a class="footer-action" href="mailto:info@scanliftlog.com?subject=ScanLiftLog%20Inquiry">Email sales</a>
+        <a class="footer-action" href="/agreement/scanliftlog-service-agreement.pdf" target="_blank" rel="noopener">Service Agreement</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
